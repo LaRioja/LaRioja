@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>ListaPalacioJusticia</servlet-name>
+        <servlet-class>servlets.ListaPalacioJusticia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarRegistroPalacioJusticia</servlet-name>
+        <servlet-class>servlets.EliminarRegistroPalacioJusticia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AnadirRegistroPalacioJusticia</servlet-name>
+        <servlet-class>servlets.AnadirRegistroPalacioJusticia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarRegistroPalacioJusticia</servlet-name>
+        <servlet-class>servlets.EditarRegistroPalacioJusticia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>XMLJusticiaLista</servlet-name>
+        <servlet-class>servlets.XMLJusticiaLista</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>XMLJusticiaSala</servlet-name>
+        <servlet-class>servlets.XMLJusticiaSala</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListaPalacioJusticia</servlet-name>
+        <url-pattern>/ListaPalacioJusticia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarRegistroPalacioJusticia</servlet-name>
+        <url-pattern>/EliminarRegistroPalacioJusticia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AnadirRegistroPalacioJusticia</servlet-name>
+        <url-pattern>/AnadirRegistroPalacioJusticia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarRegistroPalacioJusticia</servlet-name>
+        <url-pattern>/EditarRegistroPalacioJusticia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>XMLJusticiaLista</servlet-name>
+        <url-pattern>/XMLJusticiaLista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>XMLJusticiaSala</servlet-name>
+        <url-pattern>/XMLJusticiaSala</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
