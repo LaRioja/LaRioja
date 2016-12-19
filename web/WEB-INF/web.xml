@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>ListaHospital</servlet-name>
+        <servlet-class>servlets.ListaHospital</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AnadirRegistroHospital</servlet-name>
+        <servlet-class>servlets.AnadirRegistroHospital</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarRegistroHospital</servlet-name>
+        <servlet-class>servlets.EliminarRegistroHospital</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarRegistroHospital</servlet-name>
+        <servlet-class>servlets.ModificarRegistroHospital</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AnadirPlanoHospital</servlet-name>
+        <servlet-class>servlets.AnadirPlanoHospital</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>XMLHospital</servlet-name>
+        <servlet-class>servlets.XMLHospital</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>XMLHospital2</servlet-name>
+        <servlet-class>servlets.XMLHospital2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListaHospital</servlet-name>
+        <url-pattern>/ListaHospital</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AnadirRegistroHospital</servlet-name>
+        <url-pattern>/AnadirRegistroHospital</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarRegistroHospital</servlet-name>
+        <url-pattern>/EliminarRegistroHospital</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarRegistroHospital</servlet-name>
+        <url-pattern>/ModificarRegistroHospital</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AnadirPlanoHospital</servlet-name>
+        <url-pattern>/AnadirPlanoHospital</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>XMLHospital</servlet-name>
+        <url-pattern>/XMLHospital</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>XMLHospital2</servlet-name>
+        <url-pattern>/XMLHospital2</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

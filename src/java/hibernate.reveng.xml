@@ -7,4 +7,5 @@
   <table-filter match-name="usuario"/>
   <table-filter match-name="justicia"/>
   <table-filter match-name="hospital"/>
+  <table-filter match-name="plano"/>
 </hibernate-reverse-engineering>
