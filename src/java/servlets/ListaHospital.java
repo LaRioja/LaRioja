@@ -23,16 +23,13 @@ public class ListaHospital extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         List<Hospital> hospitales = ManageHospital.list();
         
-        System.out.println("Lista de consultas medicas :");
-        System.out.println(hospitales);
-        
         String param = request.getParameter("msg");
         if (param != null ) {
             if(param.compareTo("ok") == 0){
             request.setAttribute("msg", "La consulta médica ha sido añadida correctamente");
             }else if (param.compareTo("okEdit") == 0){
                 request.setAttribute("msg", "La consulta médica ha sido modificada correctamente");
-            }else if (param.compareTo("okDelete") == 0){
+            }else if (param.compareTo("okDel") == 0){
                 request.setAttribute("msg", "La consulta médica ha sido eliminada correctamente");
             }else if (param.compareTo("err") == 0){
                 request.setAttribute("error", "Error al intentar eliminar la consulta médica");

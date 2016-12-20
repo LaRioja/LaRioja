@@ -26,7 +26,7 @@
                     format: 'HH:mm',
                     locale: 'es'
                 });
-                 $("#horaFin").datetimepicker({
+                $("#horaFin").datetimepicker({
                     format: 'HH:mm',
                     locale: 'es'
                 });
@@ -34,72 +34,83 @@
         </script>
     </head>
     <body>
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-5">
-                <h4>Modificar consulta médica</h4>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-5">
+                    <h4>Modificar consulta médica</h4>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="container">
-                <c:if test="${error}">
+            <c:choose>
+                <c:when test="${error!=null}">
                     <div class="row">
                         <div class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">
-                            <ul>
-                                <c:if test="${errorconsulta !=null}">
-                                    <li><c:out value="${errorconsulta}"/></li>
-                                    </c:if>
-                                    <c:if test="${errorhorai !=null}">
-                                    <li><c:out value="${errorhorai}"/></li>
-                                    </c:if>
-                                    <c:if test="${errorhoraf !=null}">
-                                    <li><c:out value="${errorhoraf}"/></li>
-                                    </c:if>
-                                    <c:if test="${erroradd !=null}">
-                                    <li><c:out value="${erroradd}"/></li>
-                                    </c:if>
-                            </ul>
-                        </div>  
-                    </div>
-                </c:if>
-                <form class="form-horizontal" name="hospital" id="fhospital" action="ModificarRegistroHospital" method="post">
-                    <div class="form-group">
-                        <label for="inputNombre" class="col-sm-3 control-label">Nombre *</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" value="${hospital.nombremedico}" required="true" autofocus="true">
+                            <c:out value="${error}"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputApellidos" class="col-sm-3 control-label">Apellidos *</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos" value="${hospital.apellidomedico}" required="true">
+                </c:when>
+                <c:otherwise>
+                    <c:if test="${errores}">
+                        <div class="row">
+                            <div class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">
+                                <ul>
+                                    <c:if test="${errorconsulta !=null}">
+                                        <li><c:out value="${errorconsulta}"/></li>
+                                        </c:if>
+                                        <c:if test="${errorhorai !=null}">
+                                        <li><c:out value="${errorhorai}"/></li>
+                                        </c:if>
+                                        <c:if test="${errorhoraf !=null}">
+                                        <li><c:out value="${errorhoraf}"/></li>
+                                        </c:if>
+                                        <c:if test="${erroradd !=null}">
+                                        <li><c:out value="${erroradd}"/></li>
+                                        </c:if>
+                                </ul>
+                            </div>  
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputConsulta" class="col-sm-3 control-label">Número consulta *</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="consulta" id="consulta" placeholder="Número consulta" value="${hospital.numeroconsulta}" required="true">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputHoraInicio" class="col-sm-3 control-label">Hora inicio *</label>
-                        <div class="col-sm-6">
-                            <input required="true" type="text" class="form-control" name="horaIni" id="horaIni" value="<fmt:formatDate pattern="HH:mm" value="${hospital.horainicio}" />">                
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputHoraFin" class="col-sm-3 control-label">Hora fin *</label>
-                        <div class="col-sm-6">
-                            <input required="true" type="text" class="form-control" name="horaFin" id="horaFin" value="<fmt:formatDate pattern="HH:mm" value="${hospital.horafin}" />">                   
-                        </div>
-                    </div>
+                    </c:if>
+                    <div class="row">
+                        <form class="form-horizontal" name="hospital" id="fhospital" action="ModificarRegistroHospital" method="post">
+                            <div class="form-group">
+                                <label for="inputNombre" class="col-sm-3 control-label">Nombre *</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" value="${hospital.nombremedico!=null ? hospital.nombremedico : nombre}" required="true" autofocus="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputApellidos" class="col-sm-3 control-label">Apellidos *</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos" value="${hospital.apellidomedico!=null ? hospital.apellidomedico : apellidos}" required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputConsulta" class="col-sm-3 control-label">Número consulta *</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="consulta" id="consulta" placeholder="Número consulta" value="${hospital.numeroconsulta!=null ? hospital.numeroconsulta : consulta}" required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputHoraInicio" class="col-sm-3 control-label">Hora inicio *</label>
+                                <div class="col-sm-6">
+                                    <input required="true" type="text" class="form-control" name="horaIni" id="horaIni" value="<fmt:formatDate pattern="HH:mm" value="${hospital.horainicio!=null ? hospital.horainicio : horaIni}" />">                
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputHoraFin" class="col-sm-3 control-label">Hora fin *</label>
+                                <div class="col-sm-6">
+                                    <input required="true" type="text" class="form-control" name="horaFin" id="horaFin" value="<fmt:formatDate pattern="HH:mm" value="${hospital.horafin!=null ? hospital.horafin : horaFin}" />">                   
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-5">
-                            <button type="submit" class="btn btn-primary">Modificar</button>
-                            <a class="btn btn-primary" href="ListaHospital" role="button">Cancelar</a>
-                        </div>
-                    </div>
-                </form>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-5">
+                                    <button type="submit" class="btn btn-primary">Modificar</button>
+                                    <a class="btn btn-primary" href="ListaHospital" role="button">Cancelar</a>
+                                </div>
+                            </div>
+                        </form>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </body>

@@ -27,7 +27,7 @@
                     format: 'HH:mm',
                     locale: 'es'
                 });
-                 $("#horaFin").datetimepicker({
+                $("#horaFin").datetimepicker({
                     format: 'HH:mm',
                     locale: 'es'
                 });
@@ -35,33 +35,33 @@
         </script>
     </head>
     <body>
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-5">
-                <h4>Añadir nueva consulta médica</h4>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-5">
+                    <h4>Añadir nueva consulta médica</h4>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="container">
-                <c:if test="${error}">
-                    <div class="row">
-                        <div class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">
-                            <ul>
-                                <c:if test="${errorconsulta !=null}">
-                                    <li><c:out value="${errorconsulta}"/></li>
-                                    </c:if>
-                                    <c:if test="${errorhorai !=null}">
-                                    <li><c:out value="${errorhorai}"/></li>
-                                    </c:if>
-                                    <c:if test="${errorhoraf !=null}">
-                                    <li><c:out value="${errorhoraf}"/></li>
-                                    </c:if>
-                                    <c:if test="${erroradd !=null}">
-                                    <li><c:out value="${erroradd}"/></li>
-                                    </c:if>
-                            </ul>
-                        </div>  
-                    </div>
-                </c:if>
+            <c:if test="${error}">
+                <div class="row">
+                    <div class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">
+                        <ul>
+                            <c:if test="${errorconsulta !=null}">
+                                <li><c:out value="${errorconsulta}"/></li>
+                                </c:if>
+                                <c:if test="${errorhorai !=null}">
+                                <li><c:out value="${errorhorai}"/></li>
+                                </c:if>
+                                <c:if test="${errorhoraf !=null}">
+                                <li><c:out value="${errorhoraf}"/></li>
+                                </c:if>
+                                <c:if test="${erroradd !=null}">
+                                <li><c:out value="${erroradd}"/></li>
+                                </c:if>
+                        </ul>
+                    </div>  
+                </div>
+            </c:if>
+            <div class="row">
                 <form class="form-horizontal" name="hospital" id="fhospital" action="AnadirRegistroHospital" method="post">
                     <div class="form-group">
                         <label for="inputNombre" class="col-sm-3 control-label">Nombre *</label>

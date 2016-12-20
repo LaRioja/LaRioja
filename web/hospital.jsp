@@ -66,39 +66,43 @@
                     </div>
                 </div>
             </c:if>
-            <a class="btn btn-primary" href="AnadirRegistroHospital" role="button" style="float: right">Nueva consulta médica</a>
+            <div class="row">
+                <a class="btn btn-primary col-sm-offset-10" href="AnadirRegistroHospital" role="button">Nueva consulta médica</a>
+            </div>
             <br><br><br>
 
-            <div class="table-responsive">
-                <table id="tables" class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th hidden="true">id</th>
-                            <th></th>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Nº consulta</th>
-                            <th>Hora inicio</th>
-                            <th>Hora fin</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${hospitales}" var="hospital" varStatus="i"> 
+            <div class="row">
+                <div class="table-responsive col-sm-offset-1 col-sm-10">
+                    <table id="tables" class="table table-hover">
+                        <thead>
                             <tr>
-                                <td hidden="true">${hospital.id} </td>
-                                <td>    
-                                    <a href="<c:url value="ModificarRegistroHospital"><c:param name="id" value="${hospital.id}"/></c:url>"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a href="<c:url value="EliminarRegistroHospital"><c:param name="id" value="${hospital.id}"/></c:url>"><span class="glyphicon glyphicon-remove"></span></a>
-                                    </td>
-                                    <td>${hospital.nombremedico} </td>
-                                <td>${hospital.apellidomedico} </td>
-                                <td>${hospital.numeroconsulta} </td>
-                                <td><fmt:formatDate pattern="HH:mm" value="${hospital.horainicio}" /></td>
-                                <td> <fmt:formatDate pattern="HH:mm" value="${hospital.horafin}" /></td>
+                                <th hidden="true">id</th>
+                                <th></th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Nº consulta</th>
+                                <th>Hora inicio</th>
+                                <th>Hora fin</th>
                             </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${hospitales}" var="hospital" varStatus="i"> 
+                                <tr>
+                                    <td hidden="true">${hospital.id} </td>
+                                    <td>    
+                                        <a href="<c:url value="ModificarRegistroHospital"><c:param name="id" value="${hospital.id}"/></c:url>"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a href="<c:url value="EliminarRegistroHospital"><c:param name="id" value="${hospital.id}"/></c:url>"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </td>
+                                        <td>${hospital.nombremedico} </td>
+                                    <td>${hospital.apellidomedico} </td>
+                                    <td>${hospital.numeroconsulta} </td>
+                                    <td><fmt:formatDate pattern="HH:mm" value="${hospital.horainicio}" /></td>
+                                    <td> <fmt:formatDate pattern="HH:mm" value="${hospital.horafin}" /></td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <br/><br/>
             <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" <c:if test="${error_foto!=null}">aria-expanded="true"</c:if> <c:if test="${error_foto!=null}">aria-expanded="false"</c:if>aria-controls="collapseExample">

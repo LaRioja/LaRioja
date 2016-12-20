@@ -25,16 +25,11 @@ public class EliminarRegistroHospital extends HttpServlet {
             Hospital hospital = ManageHospital.read(ident);
             if (hospital != null) {
                 ManageHospital.delete(hospital);
-                Hospital visitaEmpty = ManageHospital.read(ident);
-                if (visitaEmpty == null) {
-                    response.sendRedirect("ListaHospital?msg=okDelete");
-                } else {
-                    response.sendRedirect("ListaHospital?msg=err");
-                }
+                response.sendRedirect("ListaHospital?msg=okDel");
             } else {
                 response.sendRedirect("ListaHospital?msg=err");
             }
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             response.sendRedirect("ListaHospital?msg=err");
         }
     }

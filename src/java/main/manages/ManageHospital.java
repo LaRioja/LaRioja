@@ -38,23 +38,22 @@ public class ManageHospital {
         return ok;
     }
 
-    public static Object update(Hospital hospital) {
+    public static void update(Hospital hospital) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session sess = factory.openSession();
         Transaction tx = null;
-        Object ok = null;
         try {
             tx = sess.beginTransaction();
-            ok = sess.merge(hospital);
+            sess.merge(hospital);
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             sess.close();
         }
-        return ok;
     }
 
     public static void delete(Hospital hospital) {
@@ -69,6 +68,7 @@ public class ManageHospital {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             sess.close();
         }

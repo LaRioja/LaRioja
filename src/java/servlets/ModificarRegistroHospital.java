@@ -32,15 +32,13 @@ public class ModificarRegistroHospital extends HttpServlet {
             if (hospital != null) {
                 request.setAttribute("hospital", hospital);
             } else {
-                request.setAttribute("error", "Error al intentar editar la consulta médica");
+                request.setAttribute("error", "El registro solicitado no existe");
             }
-            RequestDispatcher rd = request.getRequestDispatcher("editarHospital.jsp");
-            rd.forward(request, response);
         } catch (NumberFormatException e) {
-            request.setAttribute("error", "Error al intentar editar la consulta médica");
-            RequestDispatcher rd = request.getRequestDispatcher("editarHospital.jsp");
-            rd.forward(request, response);
+            request.setAttribute("error", "El identificador introducido no es correcto");
         }
+        RequestDispatcher rd = request.getRequestDispatcher("editarHospital.jsp");
+        rd.forward(request, response);
     }
 
     @Override
@@ -48,6 +46,13 @@ public class ModificarRegistroHospital extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         boolean error = false;
+
+        if (hospital == null) {
+            request.setAttribute("error", "El registro solicitado no existe");
+            RequestDispatcher rd = request.getRequestDispatcher("editarHospital.jsp");
+            rd.forward(request, response);
+            return;
+        }
 
         String nombre = request.getParameter("nombre");
         request.setAttribute("nombre", nombre);
@@ -57,7 +62,7 @@ public class ModificarRegistroHospital extends HttpServlet {
         request.setAttribute("consulta", numConsulta);
         String horaIni = request.getParameter("horaIni");
         String horaF = request.getParameter("horaFin");
-        
+
         int consulta = 0;
         try {
             consulta = Integer.parseInt(numConsulta);
@@ -86,16 +91,24 @@ public class ModificarRegistroHospital extends HttpServlet {
         }
 
         if (!error) {
-            if (hospital != null) {
-                hospital.setNombremedico(nombre);
-                hospital.setApellidomedico(apellidos);
-                hospital.setNumeroconsulta(consulta);
-                hospital.setHorainicio(horaInicio);
-                hospital.setHorafin(horaFin);
+            hospital.setNombremedico(nombre);
+            hospital.setApellidomedico(apellidos);
+            hospital.setNumeroconsulta(consulta);
+            hospital.setHorainicio(horaInicio);
+            hospital.setHorafin(horaFin);
 
+            try {
                 ManageHospital.update(hospital);
                 response.sendRedirect("ListaHospital?msg=okEdit");
+            } catch (Exception e) {
+                request.setAttribute("erroredit", "Error al intentar editar el registro");
+                RequestDispatcher rd = request.getRequestDispatcher("editarHospital.jsp");
+                rd.forward(request, response);
             }
+        } else {
+            request.setAttribute("errores", true);
+            RequestDispatcher rd = request.getRequestDispatcher("editarHospital.jsp");
+            rd.forward(request, response);
         }
     }
 }

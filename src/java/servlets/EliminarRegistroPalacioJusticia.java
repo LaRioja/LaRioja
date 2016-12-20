@@ -29,16 +29,12 @@ public class EliminarRegistroPalacioJusticia extends HttpServlet {
             int identidad = Integer.parseInt(id);
             Justicia justicia = ManageJusticia.read(identidad);
             if (justicia != null) {
-                try {
-                    ManageJusticia.delete(justicia);
-                    response.sendRedirect("ListaPalacioJusticia?msg=okDel");
-                } catch (Exception e) {
-                    response.sendRedirect("ListaPalacioJusticia?msg=err");
-                }
+                ManageJusticia.delete(justicia);
+                response.sendRedirect("ListaPalacioJusticia?msg=okDel");
             } else {
                 response.sendRedirect("ListaPalacioJusticia?msg=err");
             }
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             response.sendRedirect("ListaPalacioJusticia?msg=err");
         }
     }
