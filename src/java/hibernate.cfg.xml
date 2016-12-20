@@ -13,6 +13,5 @@
     <mapping class="main.model.Justicia"/>
     <mapping class="main.model.Usuario"/>
     <mapping class="main.model.Hospital"/>
-    <mapping class="main.model.Plano"/>
   </session-factory>
 </hibernate-configuration>

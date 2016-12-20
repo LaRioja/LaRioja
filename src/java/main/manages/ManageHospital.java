@@ -81,7 +81,7 @@ public class ManageHospital {
         List<Hospital> hospital = new ArrayList();
         try {
             tx = sess.beginTransaction();
-            hospital = sess.createQuery("from Hospital order by numeroconsulta").list();
+            hospital = sess.createQuery("from hospital").list();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
