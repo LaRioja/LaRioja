@@ -54,19 +54,19 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ListaPalacioJusticia</servlet-name>
-        <url-pattern>/ListaPalacioJusticia</url-pattern>
+        <url-pattern>/Justicia/ListaPalacioJusticia</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EliminarRegistroPalacioJusticia</servlet-name>
-        <url-pattern>/EliminarRegistroPalacioJusticia</url-pattern>
+        <url-pattern>/Justicia/EliminarRegistroPalacioJusticia</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AnadirRegistroPalacioJusticia</servlet-name>
-        <url-pattern>/AnadirRegistroPalacioJusticia</url-pattern>
+        <url-pattern>/Justicia/AnadirRegistroPalacioJusticia</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EditarRegistroPalacioJusticia</servlet-name>
-        <url-pattern>/EditarRegistroPalacioJusticia</url-pattern>
+        <url-pattern>/Justicia/EditarRegistroPalacioJusticia</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>XMLJusticiaLista</servlet-name>
@@ -78,23 +78,23 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListaHospital</servlet-name>
-        <url-pattern>/ListaHospital</url-pattern>
+        <url-pattern>/Hospital/ListaHospital</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AnadirRegistroHospital</servlet-name>
-        <url-pattern>/AnadirRegistroHospital</url-pattern>
+        <url-pattern>/Hospital/AnadirRegistroHospital</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EliminarRegistroHospital</servlet-name>
-        <url-pattern>/EliminarRegistroHospital</url-pattern>
+        <url-pattern>/Hospital/EliminarRegistroHospital</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ModificarRegistroHospital</servlet-name>
-        <url-pattern>/ModificarRegistroHospital</url-pattern>
+        <url-pattern>/Hospital/ModificarRegistroHospital</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AnadirPlanoHospital</servlet-name>
-        <url-pattern>/AnadirPlanoHospital</url-pattern>
+        <url-pattern>/Hospital/AnadirPlanoHospital</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>XMLHospital</servlet-name>
