@@ -74,14 +74,14 @@ public class ManagePlano {
         }
     }
     
-    public static List<Plano> list() {
+    public static Plano first() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session sess = factory.openSession();
         Transaction tx = null;
-        List<Plano> planos = new ArrayList();
+        Plano plano = new Plano();
         try {
             tx = sess.beginTransaction();
-            planos = sess.createQuery("from Plano").list();
+            plano = (Plano)sess.createQuery("from Plano").uniqueResult();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
@@ -90,7 +90,7 @@ public class ManagePlano {
         } finally {
             sess.close();
         }
-        return planos;
+        return plano;
     }
     
     public static Plano read(int id) {
