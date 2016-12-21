@@ -19,7 +19,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#" >
-                        <img alt="Brand" src="logos/gobierno_de_la_rioja.png" height="50" width="160" style="margin-top: -10%">
+                        <img alt="Brand" src="logos/gobrioja.png"  height="110" width="200" style="margin-top: -25%;">
                     </a>
                 </div>
             </div>
