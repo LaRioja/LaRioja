@@ -53,7 +53,7 @@ public class XMLHospital extends HttpServlet {
             Element root = (Element) document.createElement("ConsultaMedica");
             document.appendChild(root);
 
-            Plano plano = ManagePlano.list().get(0);
+            Plano plano = ManagePlano.first();
 
             for (Hospital h : hospitales) {
                 Element item = (Element) document.createElement("item");

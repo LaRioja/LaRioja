@@ -68,7 +68,7 @@ public class AnadirPlanoHospital extends HttpServlet {
                     request.setAttribute("error", error);
                     request.setAttribute("hospitales", ManageHospital.list());
 
-                    request.setAttribute("plano", ManagePlano.list().get(0).getNombre());
+                    request.setAttribute("plano", ManagePlano.first().getNombre());
 
                     RequestDispatcher rd = request.getRequestDispatcher("hospital.jsp");
                     rd.forward(request, response);
@@ -108,8 +108,8 @@ public class AnadirPlanoHospital extends HttpServlet {
                     plan.setNombre(nom);
 
                     Plano planoBD = null;
-                    if(ManagePlano.list().size()!=0){
-                        planoBD = ManagePlano.list().get(0);
+                    if(ManagePlano.first()!=null){
+                        planoBD = ManagePlano.first();
                     }
                     
                     int estado = ManagePlano.save(plan);
