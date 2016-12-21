@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Página de inicio</title>
+        <title>Inicio</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,16 +19,21 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#" >
-                        <img alt="Brand" src="logos/gobierno_de_la_rioja.png" height="50" width="150" style="margin-top: -10%">
+                        <img alt="Brand" src="logos/gobierno_de_la_rioja.png" height="50" width="160" style="margin-top: -10%">
                     </a>
                 </div>
             </div>
         </nav>
 
         <div class="container">
-            <h3>Cartelería del gobierno de La Rioja</h3>
-            <p>Aplicaciones:</p>
-            <a href="ListaHospital">Hospital</a>
+            <div class="col-sm-offset-2">
+                <h2>Servicio de cartelería del gobierno de La Rioja</h2>
+                <h4>Aplicaciones:</h4>
+                <ul>
+                    <li><a href="Hospital/ListaHospital">Hospital San Pedro</a></li>
+                    <li><a href="Justicia/ListaPalacioJusticia">Palacio de justicia</a></li>
+                </ul>
+            </div>
         </div>
 
     </body>

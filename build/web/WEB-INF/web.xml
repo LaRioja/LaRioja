@@ -52,6 +52,14 @@
         <servlet-name>XMLHospital2</servlet-name>
         <servlet-class>servlets.XMLHospital2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Inicio</servlet-name>
+        <servlet-class>servlets.Inicio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CerrarSesion</servlet-name>
+        <servlet-class>servlets.CerrarSesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListaPalacioJusticia</servlet-name>
         <url-pattern>/Justicia/ListaPalacioJusticia</url-pattern>
@@ -104,12 +112,86 @@
         <servlet-name>XMLHospital2</servlet-name>
         <url-pattern>/XMLHospital2</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Inicio</servlet-name>
+        <url-pattern>/Inicio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error404.jsp</location>
+    </error-page>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>Inicio</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Area de administracion</web-resource-name>
+            <url-pattern>/Admin/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>administrador</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Area del palacio de justicia</web-resource-name>
+            <url-pattern>/Justicia/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>justicia</role-name>
+            <role-name>administrador</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Area del hospital San Pedro</web-resource-name>
+            <url-pattern>/Hospital/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>hospital</role-name>
+            <role-name>administrador</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.jsp</form-login-page>
+            <form-error-page>/errorLogin.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    <servlet>
+        <servlet-name>SimpleCaptcha</servlet-name>
+        <servlet-class>nl.captcha.servlet.SimpleCaptchaServlet</servlet-class>
+        <init-param>
+            <param-name>captcha-width</param-name>
+            <param-value>300</param-value>
+        </init-param>
+        <init-param>
+            <param-name>captcha-height</param-name>
+            <param-value>100</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SimpleCaptcha</servlet-name>
+        <url-pattern>/simpleCaptcha.png</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlet;
+package servlets;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -17,12 +17,6 @@ public class Inicio extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String param=request.getParameter("msg");
-        if(param !=null && param.compareTo("ok")==0){
-            request.setAttribute("msg", "La configuración ha sido correctamente editada");
-        }else if(param !=null && param.compareTo("okCambio")==0){
-            request.setAttribute("msg", "La contraseña ha sido correctamente modificada");
-        }
         RequestDispatcher rd = request.getRequestDispatcher("inicio.jsp");
         rd.forward(request, response);
     }
