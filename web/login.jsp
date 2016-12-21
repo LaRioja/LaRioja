@@ -39,6 +39,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-5">
                             <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                            <a class="btn btn-primary" href="${ctx}/Inicio" role="button">Salir</a>
                         </div>
                     </div>
                 </form>

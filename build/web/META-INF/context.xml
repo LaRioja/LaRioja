@@ -10,6 +10,6 @@
            roleNameCol="rolname"
            userCredCol="password"
            userNameCol="username"
-           userRoleTable="rol"
-           userTable="usuario"/>
+           userRoleTable="view_role_user"
+           userTable="view_role_user"/>
 </Context>

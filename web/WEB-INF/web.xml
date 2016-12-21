@@ -118,7 +118,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CerrarSesion</servlet-name>
-        <url-pattern>/CerrarSesion</url-pattern>
+        <url-pattern>/Justicia/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/Hospital/CerrarSesion</url-pattern>
     </servlet-mapping>
     <error-page>
         <error-code>403</error-code>
@@ -171,6 +175,15 @@
             <role-name>administrador</role-name>
         </auth-constraint>
     </security-constraint>
+    <security-role>
+        <role-name>hospital</role-name>
+    </security-role>
+    <security-role>
+        <role-name>justicia</role-name>
+    </security-role>
+    <security-role>
+        <role-name>administrador</role-name>
+    </security-role>
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
