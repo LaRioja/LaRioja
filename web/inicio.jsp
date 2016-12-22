@@ -26,29 +26,35 @@
         </nav>
 
         <div class="container">
+            <c:if test="${msg!=null}">
+                <div class="row">
+                    <div class="alert alert-success col-sm-offset-3 col-sm-6" role="alert">
+                        <p><c:out value="${msg}"/></p>
+                    </div>
+                </div>
+            </c:if>
             <div class="col-sm-offset-2">
                 <h2>Servicio de cartelería del gobierno de La Rioja</h2>
                 <h4>Aplicaciones:</h4>
-                </div>
-        </div>
-        <br/><br/><br/>
-                <ul>
-                    <div class="row">
-                        <div class="col-sm-offset-3">
-                            <a class="navbar-brand" href="Justicia/ListaPalacioJusticia" >
-                                <img alt="Brand" src="logos/justicia.png"  height="100" width="350">
-                                <p style="text-align: center">Palacio de Justicia</p>
-                            </a>
-                        </div>
-                        <div class="col-sm-offset-6">
-                            <a class="navbar-brand" href="Hospital/ListaHospital">
-                                <img alt="Brand" src="logos/rioja_salud_2.png"  height="100" width="350">
-                                <p style="text-align: center">Hospital San Pedro</p>
-                            </a>
-                        </div>
-                    </div>
-                </ul>
-            
+            </div>
 
+            <br/><br/><br/>
+            <ul>
+                <div class="row">
+                    <div class="col-xs-offset-2 col-xs-4">
+                        <a class="navbar-brand" href="Justicia/ListaPalacioJusticia" >
+                            <img class="img-responsive" alt="Brand" src="logos/justicia_2.png">
+                            <p style="text-align: center">Palacio de Justicia</p>
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        <a class="navbar-brand" href="Hospital/ListaHospital">
+                            <img class="img-responsive" alt="Brand" src="logos/rioja_salud_2.png">
+                            <p style="text-align: center">Hospital San Pedro</p>
+                        </a>
+                    </div>
+                </div>
+            </ul>
+        </div>
     </body>
 </html>

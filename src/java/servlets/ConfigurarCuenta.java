@@ -8,8 +8,6 @@ package servlets;
 import main.manages.ManageUsuario;
 import main.model.Usuario;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +23,7 @@ public class ConfigurarCuenta extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession misession = (HttpSession) request.getSession();
+<<<<<<< HEAD
         String usuario = (String) misession.getAttribute("username");
         String url = request.getRequestURI();
         String param = "";
@@ -38,14 +37,27 @@ public class ConfigurarCuenta extends HttpServlet {
             users = ManageUsuario.listOneUser(request.getUserPrincipal().getName());
         } else {
             users = ManageUsuario.listOneUser(usuario);
+=======
+        String usuario=(String) misession.getAttribute("username");
+        Usuario user;
+        if (usuario == null) {
+            user = ManageUsuario.listOneUser(request.getUserPrincipal().getName());
+        }else{
+            user = ManageUsuario.listOneUser(usuario);
+>>>>>>> origin/autenticacion
         }
-        if (users == null || users.isEmpty()) {
+        if (user == null) {
             request.setAttribute("error", "No es posible configurar la cuenta");
             RequestDispatcher rd = request.getRequestDispatcher("../configuracionCuenta.jsp?origen=" + param);
             rd.forward(request, response);
         } else {
+<<<<<<< HEAD
             request.setAttribute("usuario", users.get(0));
             RequestDispatcher rd = request.getRequestDispatcher("../configuracionCuenta.jsp?origen=" + param);
+=======
+            request.setAttribute("usuario", user);
+            RequestDispatcher rd = request.getRequestDispatcher("configurarCuenta.jsp");
+>>>>>>> origin/autenticacion
             rd.forward(request, response);
         }
     }

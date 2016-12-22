@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>servlets.BorradorPeticionesContrasenia</listener-class>
+    </listener>
     <servlet>
         <servlet-name>ListaPalacioJusticia</servlet-name>
         <servlet-class>servlets.ListaPalacioJusticia</servlet-class>
@@ -61,8 +65,43 @@
         <servlet-class>servlets.CerrarSesion</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/autenticacion
+        <servlet-name>RecuerdaContrasenia</servlet-name>
+        <servlet-class>servlets.RecuerdaContrasenia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PideNuevaContrasenia</servlet-name>
+        <servlet-class>servlets.PideNuevaContrasenia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CambioContrasenia</servlet-name>
+        <servlet-class>servlets.CambioContrasenia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListaUsuarios</servlet-name>
+        <servlet-class>servlets.ListaUsuarios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AnadirUsuario</servlet-name>
+        <servlet-class>servlets.AnadirUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarUsuario</servlet-name>
+        <servlet-class>servlets.EliminarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarUsuario</servlet-name>
+        <servlet-class>servlets.EditarUsuario</servlet-class>
+<<<<<<< HEAD
+=======
         <servlet-name>ConfigurarCuenta</servlet-name>
         <servlet-class>servlets.ConfigurarCuenta</servlet-class>
+>>>>>>> Configuracion cuenta
+=======
+>>>>>>> origin/autenticacion
     </servlet>
     <servlet-mapping>
         <servlet-name>ListaPalacioJusticia</servlet-name>
@@ -129,12 +168,47 @@
         <url-pattern>/Hospital/CerrarSesion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/autenticacion
+        <servlet-name>RecuerdaContrasenia</servlet-name>
+        <url-pattern>/RecuerdaContrasenia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PideNuevaContrasenia</servlet-name>
+        <url-pattern>/PideNuevaContrasenia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CambioContrasenia</servlet-name>
+        <url-pattern>/CambioContrasenia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListaUsuarios</servlet-name>
+        <url-pattern>/Admin/ListaUsuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AnadirUsuario</servlet-name>
+        <url-pattern>/Admin/AnadirUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarUsuario</servlet-name>
+        <url-pattern>/Admin/EliminarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarUsuario</servlet-name>
+        <url-pattern>/Admin/EditarUsuario</url-pattern>
+<<<<<<< HEAD
+=======
         <servlet-name>ConfigurarCuenta</servlet-name>
         <url-pattern>/Justicia/ConfigurarCuenta</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ConfigurarCuenta</servlet-name>
         <url-pattern>/Hospital/ConfigurarCuenta</url-pattern>
+>>>>>>> Configuracion cuenta
+=======
+>>>>>>> origin/autenticacion
     </servlet-mapping>
     <error-page>
         <error-code>403</error-code>

@@ -22,24 +22,24 @@
                     <h4>Añadir nuevos usuarios</h4>
                 </div>
             </div>
-            <c:if test="${errores !=null}">
+            <c:if test="${errores}">
                 <div class="row">
                     <div class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">
                         <ul>
-                            <c:if test="${errorpwd !=null}">
+                            <c:if test="${errorname !=null}">
+                                <li><c:out value="${errorname}"/></li>
+                                </c:if>
+                                <c:if test="${errorpwd !=null}">
                                 <li><c:out value="${errorpwd}"/></li>
                                 </c:if>
                                 <c:if test="${errormail !=null}">
                                 <li><c:out value="${errormail}"/></li>
                                 </c:if>
-                                <c:if test="${error !=null}">
-                                <li><c:out value="${error}"/></li>
+                                <c:if test="${erroradd !=null}">
+                                <li><c:out value="${erroradd}"/></li>
                                 </c:if>
                                 <c:if test="${errorrol !=null}">
                                 <li><c:out value="${errorrol}"/></li>
-                                </c:if>
-                                <c:if test="${errorname !=null}">
-                                <li><c:out value="${errorname}"/></li>
                                 </c:if>
                                 <c:if test="${erroremail !=null}">
                                 <li><c:out value="${erroremail}"/></li>
@@ -75,8 +75,10 @@
                         <label for="inputRol" class="col-sm-4 control-label">Rol *</label>
                         <div class="col-sm-5">
                             <c:forEach var="rol" items="${rols}">
-                                <label class="radio-inline"><input type="checkbox" name="rol" id="rol1" value="${rol.id}"> ${rol.rolname}</label>
-                                </c:forEach>
+                                <div class="radio">
+                                    <label><input type="radio" name="rol" value="${rol.id}" <c:if test="${rol.id == rolSel}">checked="true"</c:if>> ${rol.rolname}</label>
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="form-group">

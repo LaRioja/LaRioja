@@ -73,16 +73,15 @@
             <div class="row">
                 <a class="btn btn-primary col-sm-offset-10" href="AnadirUsuario" role="button">Nuevo usuario</a>
             </div>
-            <br><br><br>
             <div class="row">
-                <div id="listaUsuarios" class="table-responsive col-sm-offset-2 col-sm-8">
+                <div id="listaUsuarios" class="table-responsive col-sm-offset-1 col-sm-10">
                     <table id="tables" class="table table-hover">
                         <thead>
                             <tr>
                                 <th></th>
                                 <th>Nombre de usuario</th>
                                 <th>Correo electrónico</th>
-                                <th>Rol</th>
+                                <th>Rol asignado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,7 +98,7 @@
                                         </td>
                                         <td>${usuario.username}</td>
                                     <td>${usuario.email}</td>
-                                    <td>${usuario.rol.nombre}</td>
+                                    <td>${usuario.rol.rolname}</td>
                                 </tr>
                             </c:forEach>
                         </tbody>
