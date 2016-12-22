@@ -27,11 +27,18 @@
                 <div class="row">
                     <div class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">
                         <ul>
-                            <c:if test="${errorcaptcha !=null}">
+
+                            <c:if test="${erroruser !=null}">
+                                <li><c:out value="${erroruser}"/></li>
+                                </c:if>
+                                <c:if test="${errorcaptcha !=null}">
                                 <li><c:out value="${errorcaptcha}"/></li>
                                 </c:if>
-                                <c:if test="${erroruser !=null}">
-                                <li><c:out value="${erroruser}"/></li>
+                                <c:if test="${errormail !=null}">
+                                <li><c:out value="${errormail}"/></li>
+                                </c:if>
+                                <c:if test="${errorpass !=null}">
+                                <li><c:out value="${errorpass}"/></li>
                                 </c:if>
                         </ul>
                     </div>
@@ -59,7 +66,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-5 col-sm-4">
                             <button type="submit" class="btn btn-primary">Aceptar</button>
-                            <a href="Inicio" class="btn btn-primary" role="button">Cancelar</a>
+                            <a href="${ctx}/Inicio" class="btn btn-primary" role="button">Cancelar</a>
                         </div>
                     </div>
                 </form>

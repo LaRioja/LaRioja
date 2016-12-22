@@ -158,15 +158,15 @@ public class ManageUsuario {
         return existe;
     }
 
-    public static List<Usuario> listOneUser(String name) {
+    public static Usuario listOneUser(String name) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session sess = factory.openSession();
         Transaction tx = null;
-        List<Usuario> users = new ArrayList();
+        Usuario user = new Usuario();
         try {
             tx = sess.beginTransaction();
-            users = sess.createQuery("from Usuario where username = :user_name")
-                    .setParameter("user_name", name).list();
+            user = (Usuario) sess.createQuery("from Usuario where username = :user_name")
+                    .setParameter("user_name", name).uniqueResult();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
@@ -175,7 +175,7 @@ public class ManageUsuario {
         } finally {
             sess.close();
         }
-        return users;
+        return user;
     }
 
     public static boolean existeNameNotme(String name, int id) {

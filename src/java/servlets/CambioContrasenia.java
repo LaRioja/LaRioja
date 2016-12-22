@@ -22,12 +22,12 @@ public class CambioContrasenia extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String param = request.getParameter("msg");
         if (param != null && param.compareTo("error") == 0) {
             request.setAttribute("errorpeti", "Petición de contraseña inválida. Es posible que el código de cambio haya expirado. Vuelva a solicitar el cambio");
         }
-        
+
         RequestDispatcher rd = request.getRequestDispatcher("cambioContrasenia.jsp");
         rd.forward(request, response);
     }
@@ -36,12 +36,12 @@ public class CambioContrasenia extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String pwd = request.getParameter("pwd");
         String rpwd = request.getParameter("rpwd");
         request.setAttribute("pwd", pwd);
         request.setAttribute("rpwd", rpwd);
-        
+
         if (pwd.compareTo(rpwd) == 0) {
             boolean correcto = true;
             if (!pwd.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}$")) {
@@ -51,30 +51,34 @@ public class CambioContrasenia extends HttpServlet {
             if (correcto) {
                 try {
                     HttpSession sesion = request.getSession();
-                    Usuario iduser = (Usuario)sesion.getAttribute("iduser");
+                    Usuario iduser = (Usuario) sesion.getAttribute("user");
                     if (iduser != null) {
                         String contraseniaEncriptada = DigestUtils.shaHex(pwd);
                         iduser.setPassword(contraseniaEncriptada);
                         ManageUsuario.update(iduser);
 
-                        sesion.removeAttribute("iduser");
-                        response.sendRedirect("Inicio?msg=okCambio");
+                        sesion.removeAttribute("user");
+                        response.sendRedirect("Inicio?msg=okPass");
                     } else {
-                        request.setAttribute("errorconf", "Error al intentar editar la contraseña");
+                        request.setAttribute("errores", true);
+                        request.setAttribute("errorconf", "Error al intentar editar la contraseña. Contacte con el administrador");
                         RequestDispatcher rd = request.getRequestDispatcher("cambioContrasenia.jsp");
                         rd.forward(request, response);
                     }
 
                 } catch (Exception e) {
-                    request.setAttribute("errorconf", "Error al intentar editar la contraseña");
+                    request.setAttribute("errores", true);
+                    request.setAttribute("errorconf", "Error al intentar editar la contraseña. Contacte con el administrador");
                     RequestDispatcher rd = request.getRequestDispatcher("cambioContrasenia.jsp");
                     rd.forward(request, response);
                 }
             } else {
+                request.setAttribute("errores", true);
                 RequestDispatcher rd = request.getRequestDispatcher("cambioContrasenia.jsp");
                 rd.forward(request, response);
             }
         } else {
+            request.setAttribute("errores", true);
             request.setAttribute("errorcoincide", "Petición inválida. Es posible que las contraseñas introducidas no coincidan");
             RequestDispatcher rd = request.getRequestDispatcher("cambioContrasenia.jsp");
             rd.forward(request, response);

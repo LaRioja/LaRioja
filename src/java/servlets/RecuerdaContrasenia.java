@@ -34,6 +34,7 @@ public class RecuerdaContrasenia extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setAttribute("errores", false);
         RequestDispatcher rd = request.getRequestDispatcher("recuerdoContrasenia.jsp");
         rd.forward(request, response);
     }
@@ -48,60 +49,57 @@ public class RecuerdaContrasenia extends HttpServlet {
         String nom_usu = request.getParameter("usr");
         request.setAttribute("user", nom_usu);
         boolean correcto = true;
+        Usuario usuario = ManageUsuario.listOneUser(nom_usu);
         if (!captcha.isCorrect(txtCaptcha)) {
             request.setAttribute("errorcaptcha", "El texto introducido no corresponde con el texto de la imagen");
             correcto = false;
         }
-        if (!ManageUsuario.existeName(nom_usu)) {
+        if (usuario == null) {
             request.setAttribute("erroruser", "El usuario requerido no existe");
             correcto = false;
         }
         if (correcto) {
             String cod = java.util.UUID.randomUUID().toString();
-            List<Usuario> usuarios = ManageUsuario.listOneUser(nom_usu);
-            if (usuarios == null || usuarios.isEmpty()) {
-                request.setAttribute("erroruser", "El usuario requerido no existe");
-                RequestDispatcher rd = request.getRequestDispatcher("recuerdoContrasenia.jsp");
-                rd.forward(request, response);
-            } else {
-                Date fecha = new Date();
-                Recuerdocontrasenia recuerdo = new Recuerdocontrasenia(usuarios.get(0),cod,new Timestamp(fecha.getTime()));
-                
-                int ok = ManageContrasenia.save(recuerdo);
-                if (ok != -1) {
-                    String urreles = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/PideNuevaContrasenia?cc=" + cod;
-                    
-                    Properties props = new PropertiesMail().getProperties();     
-                    
+            Date fecha = new Date();
+            Recuerdocontrasenia recuerdo = new Recuerdocontrasenia(usuario, cod, new Timestamp(fecha.getTime()));
+
+            int ok = ManageContrasenia.save(recuerdo);
+            if (ok != -1) {
+                String urreles = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/PideNuevaContrasenia?cc=" + cod;
+                try {
+                    Properties props = new PropertiesMail().getProperties();
+
                     Session session = Session.getDefaultInstance(props);
                     session.setDebug(true);
-                    try {
-                        MimeMessage message = new MimeMessage(session);
-                        message.setFrom(new InternetAddress(props.getProperty("mail.smtp.user")));
-                        message.addRecipient(Message.RecipientType.TO, new InternetAddress(usuarios.get(0).getEmail()));
-                        message.setSubject("Cambio contrasenia");
-                        message.setText("Usa el siguiente enlace para acceder a una página donde podrás cambiar tu contraseña: \n" + urreles,
-                                "UTF-8",
-                                "html");
 
-                        Transport t = session.getTransport("smtp");
-                        t.connect(props.getProperty("mail.smtp.user"),props.getProperty("mail.smtp.password"));
-                        t.sendMessage(message,message.getAllRecipients());
-                        t.close();
-                        
-                        response.sendRedirect("usuario/Inicio");
-                    } catch (MessagingException e) {
-                        request.setAttribute("erroruser", "No es posible enviar un correo al usuario solicitado");
-                        RequestDispatcher rd = request.getRequestDispatcher("recuerdoContrasenia.jsp");
-                        rd.forward(request, response);
-                    }
-                } else {
-                    request.setAttribute("erroruser", "No es posible recuperar la contraseña del usuario solicitado");
+                    MimeMessage message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress(props.getProperty("mail.smtp.user")));
+                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(usuario.getEmail()));
+                    message.setSubject("Cambio contrasenia");
+                    message.setText("Usa el siguiente enlace para acceder a una página donde podrás cambiar tu contraseña: \n" + urreles,
+                            "UTF-8",
+                            "html");
+
+                    Transport t = session.getTransport("smtp");
+                    t.connect(props.getProperty("mail.smtp.user"), props.getProperty("mail.smtp.password"));
+                    t.sendMessage(message, message.getAllRecipients());
+                    t.close();
+
+                    response.sendRedirect(request.getContextPath() + "/Inicio");
+                } catch (MessagingException e) {
+                    request.setAttribute("errores", true);
+                    request.setAttribute("errormail", "No es posible enviar un correo al usuario solicitado");
                     RequestDispatcher rd = request.getRequestDispatcher("recuerdoContrasenia.jsp");
                     rd.forward(request, response);
                 }
+            } else {
+                request.setAttribute("errores", true);
+                request.setAttribute("errorpass", "No es posible recuperar la contraseña del usuario solicitado. Inténtelo de nuevo");
+                RequestDispatcher rd = request.getRequestDispatcher("recuerdoContrasenia.jsp");
+                rd.forward(request, response);
             }
         } else {
+            request.setAttribute("errores", true);
             RequestDispatcher rd = request.getRequestDispatcher("recuerdoContrasenia.jsp");
             rd.forward(request, response);
         }

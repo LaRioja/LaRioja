@@ -45,7 +45,7 @@ public class ManageContrasenia {
         Usuario user = null;
         try {
             tx = sess.beginTransaction();
-            user = (Usuario) sess.createQuery("select userid from RecuerdoContrasenia where codigo = :cod")
+            user = (Usuario) sess.createQuery("select usuario from Recuerdocontrasenia where codigo = :cod")
                     .setParameter("cod", codigo).uniqueResult();
             tx.commit();
         } catch (Exception e) {
@@ -64,7 +64,7 @@ public class ManageContrasenia {
         Transaction tx = null;
         try {
             tx = sess.beginTransaction();
-            sess.createSQLQuery("DELETE FROM RecuerdoContrasenia WHERE fecha < DATE_ADD(now(), INTERVAL '-30' MINUTE)").executeUpdate();
+            sess.createSQLQuery("DELETE FROM recuerdocontrasenia WHERE fecha < DATE_ADD(now(), INTERVAL '-30' MINUTE)").executeUpdate();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

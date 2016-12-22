@@ -8,8 +8,6 @@ package servlets;
 import main.manages.ManageUsuario;
 import main.model.Usuario;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,18 +24,18 @@ public class ConfigurarCuenta extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession misession = (HttpSession) request.getSession();
         String usuario=(String) misession.getAttribute("username");
-        List<Usuario> users=new ArrayList<Usuario>();
+        Usuario user;
         if (usuario == null) {
-            users = ManageUsuario.listOneUser(request.getUserPrincipal().getName());
+            user = ManageUsuario.listOneUser(request.getUserPrincipal().getName());
         }else{
-            users = ManageUsuario.listOneUser(usuario);
+            user = ManageUsuario.listOneUser(usuario);
         }
-        if (users == null || users.isEmpty()) {
+        if (user == null) {
             request.setAttribute("error", "No es posible configurar la cuenta");
             RequestDispatcher rd = request.getRequestDispatcher("configurarCuenta.jsp");
             rd.forward(request, response);
         } else {
-            request.setAttribute("usuario", users.get(0));
+            request.setAttribute("usuario", user);
             RequestDispatcher rd = request.getRequestDispatcher("configurarCuenta.jsp");
             rd.forward(request, response);
         }

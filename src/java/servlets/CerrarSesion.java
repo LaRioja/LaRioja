@@ -18,10 +18,10 @@ public class CerrarSesion extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sesion = request.getSession(false);
         if (sesion == null) {
-            response.sendRedirect("Inicio");
+            response.sendRedirect(request.getContextPath()+"/Inicio");
         } else {
             sesion.invalidate();
-            response.sendRedirect("Inicio");
+            response.sendRedirect(request.getContextPath()+"/Inicio");
         }
     }
 
