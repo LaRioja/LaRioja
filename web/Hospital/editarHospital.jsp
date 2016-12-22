@@ -1,6 +1,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%
+    HttpSession misession = (HttpSession) request.getSession();
+    String usuario = (String) misession.getAttribute("username");
+    request.setAttribute("isAdmin", request.isUserInRole("administrador"));
+    if (usuario == null) {
+        request.setAttribute("username", request.getUserPrincipal().getName().toUpperCase());
+    } else {
+        request.setAttribute("username", usuario.toUpperCase());
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,6 +44,7 @@
         </script>
     </head>
     <body>
+        <%@include file="../navbar.html" %>
         <div class="container">
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-5">

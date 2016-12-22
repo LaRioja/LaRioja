@@ -29,12 +29,26 @@
             <div class="col-sm-offset-2">
                 <h2>Servicio de cartelería del gobierno de La Rioja</h2>
                 <h4>Aplicaciones:</h4>
-                <ul>
-                    <li><a href="Hospital/ListaHospital">Hospital San Pedro</a></li>
-                    <li><a href="Justicia/ListaPalacioJusticia">Palacio de justicia</a></li>
-                </ul>
-            </div>
+                </div>
         </div>
+        <br/><br/><br/>
+                <ul>
+                    <div class="row">
+                        <div class="col-sm-offset-3">
+                            <a class="navbar-brand" href="Justicia/ListaPalacioJusticia" >
+                                <img alt="Brand" src="logos/justicia.png"  height="100" width="350">
+                                <p style="text-align: center">Palacio de Justicia</p>
+                            </a>
+                        </div>
+                        <div class="col-sm-offset-6">
+                            <a class="navbar-brand" href="Hospital/ListaHospital">
+                                <img alt="Brand" src="logos/rioja_salud_2.png"  height="100" width="350">
+                                <p style="text-align: center">Hospital San Pedro</p>
+                            </a>
+                        </div>
+                    </div>
+                </ul>
+            
 
     </body>
 </html>
