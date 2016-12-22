@@ -32,7 +32,7 @@ public class AnadirUsuario extends HttpServlet {
         String mail = request.getParameter("mail");
         request.setAttribute("mail", mail);
         String rol = request.getParameter("rol");
-        request.setAttribute("rol", rol);
+        request.setAttribute("rolSel", rol);
         request.setAttribute("rols", ManageRol.listRol());
 
         if (!contrasenia.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}$")) {
@@ -51,6 +51,10 @@ public class AnadirUsuario extends HttpServlet {
             request.setAttribute("erroremail", "Ya existe un usuario con ese correo electrónico");
             error = true;
         }
+        if (rol == null) {
+            request.setAttribute("errorrol", "Debe seleccionar un rol");
+            error = true;
+        }
 
         if (!error) {
             String contraseniaEncriptada = DigestUtils.shaHex(contrasenia);
@@ -58,11 +62,12 @@ public class AnadirUsuario extends HttpServlet {
             Rol role = ManageRol.readRol(id);
             Usuario user = new Usuario(usuario, contraseniaEncriptada, mail, role);
             int ok = ManageUsuario.save(user);
-            
+
             if (ok != -1) {
                 response.sendRedirect("ListaUsuarios?msg=ok");
             } else {
-                request.setAttribute("error", "Error al intentar añadir el usuario");
+                request.setAttribute("errores", true);
+                request.setAttribute("erroradd", "Error al intentar añadir el usuario");
                 RequestDispatcher rd = request.getRequestDispatcher("anadirUsuario.jsp");
                 rd.forward(request, response);
             }

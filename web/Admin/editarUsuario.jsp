@@ -87,8 +87,10 @@
                                 <label for="inputRol" class="col-sm-4 control-label">Rol *</label>
                                 <div class="col-sm-5">
                                     <c:forEach var="rol" items="${rols}">
-                                        <label class="radio-inline"><input type="checkbox" name="rol" id="rol1" value="${rol.id}" <c:if test="${roles.contains(rol)}">checked="true"</c:if>> ${rol.rolname}</label>
-                                        </c:forEach>
+                                        <div class="radio">
+                                            <label><input type="radio" name="rol" value="${rol.id}" <c:if test="${rol.id == usuario.rol.id}">checked="true"</c:if>> ${rol.rolname}</label>
+                                            </div>
+                                    </c:forEach>
                                 </div>
                             </div>
                             <div class="form-group">

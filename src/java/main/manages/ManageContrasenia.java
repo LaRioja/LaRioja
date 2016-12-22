@@ -5,7 +5,6 @@
  */
 package main.manages;
 
-import java.util.List;
 import main.model.Recuerdocontrasenia;
 import main.model.Usuario;
 import main.persistence.HibernateUtil;

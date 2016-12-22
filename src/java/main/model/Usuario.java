@@ -85,11 +85,11 @@ public class Usuario implements java.io.Serializable {
         this.email = email;
     }
 
-    public Rol getRoles() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRoles(Rol rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 

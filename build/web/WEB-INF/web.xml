@@ -76,6 +76,22 @@
         <servlet-name>CambioContrasenia</servlet-name>
         <servlet-class>servlets.CambioContrasenia</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListaUsuarios</servlet-name>
+        <servlet-class>servlets.ListaUsuarios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AnadirUsuario</servlet-name>
+        <servlet-class>servlets.AnadirUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarUsuario</servlet-name>
+        <servlet-class>servlets.EliminarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarUsuario</servlet-name>
+        <servlet-class>servlets.EditarUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListaPalacioJusticia</servlet-name>
         <url-pattern>/Justicia/ListaPalacioJusticia</url-pattern>
@@ -151,6 +167,22 @@
     <servlet-mapping>
         <servlet-name>CambioContrasenia</servlet-name>
         <url-pattern>/CambioContrasenia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListaUsuarios</servlet-name>
+        <url-pattern>/Admin/ListaUsuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AnadirUsuario</servlet-name>
+        <url-pattern>/Admin/AnadirUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarUsuario</servlet-name>
+        <url-pattern>/Admin/EliminarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarUsuario</servlet-name>
+        <url-pattern>/Admin/EditarUsuario</url-pattern>
     </servlet-mapping>
     <error-page>
         <error-code>403</error-code>
