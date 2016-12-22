@@ -20,16 +20,23 @@
         <meta name="author" content="Hiberus Osaba">
 
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+        <c:set var="param" value="${pageContext.request.getParameter('origen')}"/>
         <link href="${ctx}/CSS/custom.css" rel="stylesheet" media="all" type="text/css">
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
         <script src="${ctx}/JS/bootstrap.min.js"></script>
     </head>
     <body>
+        <%@include file="navbar.html" %>
         <div class="container">
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-5">
-                    <h4>Configurar cuenta</h4>
+                    <c:if test="${param.origen == 'Justicia'}">
+                        <h4>Configurar cuenta justicia</h4>
+                    </c:if>
+                    <c:if test="${param.origen == 'Hospital'}">
+                        <h4>Configurar cuenta hospital</h4>
+                    </c:if>
                 </div>
             </div>
             <c:choose>
@@ -93,7 +100,12 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-4 col-sm-5">
                                     <button type="submit" class="btn btn-primary">Aceptar</button>
-                                    <a href="Inicio" class="btn btn-primary" role="button">Cancelar</a>
+                                    <c:if test="${param.origen == 'Justicia'}">
+                                        <a href="ListaPalacioJusticia" class="btn btn-primary" role="button">Cancelar</a>
+                                    </c:if>
+                                    <c:if test="${param.origen == 'Hospital'}">
+                                        <a href="ListaHospital" class="btn btn-primary" role="button">Cancelar</a>
+                                    </c:if>
                                 </div>
                             </div>
                             <div class="form-group" hidden="true">

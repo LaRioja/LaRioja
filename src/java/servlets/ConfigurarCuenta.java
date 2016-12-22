@@ -25,20 +25,27 @@ public class ConfigurarCuenta extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession misession = (HttpSession) request.getSession();
-        String usuario=(String) misession.getAttribute("username");
-        List<Usuario> users=new ArrayList<Usuario>();
+        String usuario = (String) misession.getAttribute("username");
+        String url = request.getRequestURI();
+        String param = "";
+        if (url.contains("Hospital")) {
+            param = "Hospital";
+        } else if (url.contains("Justicia")) {
+            param = "Justicia";
+        }
+        List<Usuario> users = new ArrayList<Usuario>();
         if (usuario == null) {
             users = ManageUsuario.listOneUser(request.getUserPrincipal().getName());
-        }else{
+        } else {
             users = ManageUsuario.listOneUser(usuario);
         }
         if (users == null || users.isEmpty()) {
             request.setAttribute("error", "No es posible configurar la cuenta");
-            RequestDispatcher rd = request.getRequestDispatcher("configurarCuenta.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("../configuracionCuenta.jsp?origen=" + param);
             rd.forward(request, response);
         } else {
             request.setAttribute("usuario", users.get(0));
-            RequestDispatcher rd = request.getRequestDispatcher("configurarCuenta.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("../configuracionCuenta.jsp?origen=" + param);
             rd.forward(request, response);
         }
     }
@@ -77,9 +84,12 @@ public class ConfigurarCuenta extends HttpServlet {
                 request.setAttribute("erroremail", "Ya existe un usuario con ese correo electrónico");
                 correcto = false;
             }
-            if (correcto) {
+            String url = request.getRequestURI();
+            String param = "";
 
+            if (correcto) {
                 Usuario user = ManageUsuario.read(ident);
+
                 if (user != null) {
                     user.setUsername(usuario);
                     user.setEmail(mail);
@@ -88,24 +98,40 @@ public class ConfigurarCuenta extends HttpServlet {
                         user.setPassword(contraseniaEncriptada);
                     }
                     ManageUsuario.update(user);
-                    
+
                     HttpSession misession = (HttpSession) request.getSession();
                     misession.setAttribute("username", usuario);
-                    
-                    response.sendRedirect("Inicio?msg=ok");
+
+                    if (url.contains("Hospital")) {
+                        response.sendRedirect("ListaHospital?msg=okConf");
+                    } else if (url.contains("Justicia")) {
+                        response.sendRedirect("ListaPalacioJusticia?msg=okConf");
+                    }
                 } else {
+                    request.setAttribute("errores", true);
                     request.setAttribute("errorconf", "Error al intentar editar la cuenta");
-                    RequestDispatcher rd = request.getRequestDispatcher("configurarCuenta.jsp");
-                    rd.forward(request, response);
+                    if (url.contains("Hospital")) {
+                        RequestDispatcher rd = request.getRequestDispatcher("../configuracionCuenta.jsp?origen=" + "Hospital");
+                        rd.forward(request, response);
+                    } else if (url.contains("Justicia")) {
+                        RequestDispatcher rd = request.getRequestDispatcher("../configuracionCuenta.jsp?origen=" + "Justicia");
+                        rd.forward(request, response);
+                    }
                 }
 
             } else {
-                RequestDispatcher rd = request.getRequestDispatcher("configurarCuenta.jsp");
-                rd.forward(request, response);
+                request.setAttribute("errores", true);
+                if (url.contains("Hospital")) {
+                    RequestDispatcher rd = request.getRequestDispatcher("../configuracionCuenta.jsp?origen=" + "Hospital");
+                    rd.forward(request, response);
+                } else if (url.contains("Justicia")) {
+                    RequestDispatcher rd = request.getRequestDispatcher("../configuracionCuenta.jsp?origen=" + "Justicia");
+                    rd.forward(request, response);
+                }
             }
         } catch (NumberFormatException e) {
             request.setAttribute("errorconf", "Error al intentar editar la cuenta");
-            RequestDispatcher rd = request.getRequestDispatcher("configurarCuenta.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("configuracionCuenta.jsp");
             rd.forward(request, response);
         }
     }

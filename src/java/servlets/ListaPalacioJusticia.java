@@ -37,6 +37,8 @@ public class ListaPalacioJusticia extends HttpServlet {
                 request.setAttribute("msg", "La información ha sido eliminada correctamente");
             } else if (param.compareTo("err") == 0) {
                 request.setAttribute("error", "Error al intentar eliminar");
+            }else if (param.compareTo("okConf") == 0){
+                request.setAttribute("msg", "La configuración de la cuenta ha sido correctamente editada");
             }
         }
 
