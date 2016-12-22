@@ -108,9 +108,6 @@
                                     </c:if>
                                 </div>
                             </div>
-                            <div class="form-group" hidden="true">
-                                <input type="text" class="form-control" name="id" id="id" value="<c:out value="${usuario.id!=null ? usuario.id : id}"/>" hidden="true">
-                            </div>
                         </form>
                     </div>
                 </c:otherwise>

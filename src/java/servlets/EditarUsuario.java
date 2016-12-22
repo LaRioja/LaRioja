@@ -46,6 +46,15 @@ public class EditarUsuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        boolean error = false;
+
+        if (user == null) {
+            request.setAttribute("error", "El usuario solicitado no existe");
+            RequestDispatcher rd = request.getRequestDispatcher("editarUsuario.jsp");
+            rd.forward(request, response);
+            return;
+        }
+
         String usuario = request.getParameter("usr");
         request.setAttribute("usr", usuario);
         String contrasenia = request.getParameter("pwd");
@@ -54,16 +63,10 @@ public class EditarUsuario extends HttpServlet {
         request.setAttribute("mail", mail);
         String rol = request.getParameter("rol");
         request.setAttribute("rolSel", rol);
-        String id = request.getParameter("id");
-        request.setAttribute("id", id);
+
         request.setAttribute("rols", ManageRol.listRol());
 
         try {
-
-            int ident = Integer.parseInt(id);
-
-            boolean error = false;
-
             if (!contrasenia.isEmpty() && !contrasenia.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}$")) {
                 request.setAttribute("errorpwd", "La contraseña no cumple con la complejidad mínima");
                 error = true;
@@ -72,11 +75,11 @@ public class EditarUsuario extends HttpServlet {
                 request.setAttribute("errormail", "El correo electrónico no es válido");
                 error = true;
             }
-            if (ManageUsuario.existeNameNotme(usuario, ident)) {
+            if (ManageUsuario.existeNameNotme(usuario, user.getId())) {
                 request.setAttribute("errorname", "Ya existe un usuario con ese nombre");
                 error = true;
             }
-            if (ManageUsuario.existeEmailNotme(mail, ident)) {
+            if (ManageUsuario.existeEmailNotme(mail, user.getId())) {
                 request.setAttribute("erroremail", "Ya existe un usuario con ese correo electrónico");
                 error = true;
             }
@@ -85,36 +88,24 @@ public class EditarUsuario extends HttpServlet {
                 error = true;
             }
             if (!error) {
-                Usuario user = ManageUsuario.read(ident);
-                if (user != null) {
-                    user.setUsername(usuario);
-                    user.setEmail(mail);
-                    if (!contrasenia.isEmpty()) {
-                        String contraseniaEncriptada = DigestUtils.shaHex(contrasenia);
-                        user.setPassword(contraseniaEncriptada);
-                    }
-                    int idRol = Integer.parseInt(rol);
-                    Rol role = ManageRol.readRol(idRol);
-                    user.setRol(role);
-                    try {
-                        ManageUsuario.update(user);
-                        response.sendRedirect("ListaUsuarios?msg=okEdit");
-                    } catch (Exception e) {
-                        request.setAttribute("errorconf", "Error al intentar editar el usuario");
-                        RequestDispatcher rd = request.getRequestDispatcher("editarUsuario.jsp");
-                        rd.forward(request, response);
-                    }
-                } else {
-                    request.setAttribute("errorconf", "Error al intentar editar el usuario");
-                    RequestDispatcher rd = request.getRequestDispatcher("editarUsuario.jsp");
-                    rd.forward(request, response);
+                user.setUsername(usuario);
+                user.setEmail(mail);
+                if (!contrasenia.isEmpty()) {
+                    String contraseniaEncriptada = DigestUtils.shaHex(contrasenia);
+                    user.setPassword(contraseniaEncriptada);
                 }
+                int idRol = Integer.parseInt(rol);
+                Rol role = ManageRol.readRol(idRol);
+                user.setRol(role);
+                ManageUsuario.update(user);
+                response.sendRedirect("ListaUsuarios?msg=okEdit");
             } else {
                 request.setAttribute("errores", true);
                 RequestDispatcher rd = request.getRequestDispatcher("editarUsuario.jsp");
                 rd.forward(request, response);
             }
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
+            request.setAttribute("errores", true);
             request.setAttribute("errorconf", "Error al intentar editar el usuario");
             RequestDispatcher rd = request.getRequestDispatcher("editarUsuario.jsp");
             rd.forward(request, response);

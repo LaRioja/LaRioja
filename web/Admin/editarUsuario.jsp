@@ -35,14 +35,14 @@
                         <div class="row">
                             <div class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">
                                 <ul>
-                                    <c:if test="${errorpwd !=null}">
+                                    <c:if test="${errorname !=null}">
+                                        <li><c:out value="${errorname}"/></li>
+                                        </c:if>
+                                        <c:if test="${errorpwd !=null}">
                                         <li><c:out value="${errorpwd}"/></li>
                                         </c:if>
                                         <c:if test="${errormail !=null}">
                                         <li><c:out value="${errormail}"/></li>
-                                        </c:if>
-                                        <c:if test="${errorname !=null}">
-                                        <li><c:out value="${errorname}"/></li>
                                         </c:if>
                                         <c:if test="${erroremail !=null}">
                                         <li><c:out value="${erroremail}"/></li>
@@ -98,9 +98,6 @@
                                     <button type="submit" class="btn btn-primary">Editar</button>
                                     <a href="ListaUsuarios" class="btn btn-primary" role="button">Cancelar</a>
                                 </div>
-                            </div>
-                            <div class="form-group" hidden="true">
-                                <input type="text" class="form-control" name="id" id="id" value="<c:out value="${usuario.id!=null ? usuario.id : id}"/>" hidden="true">
                             </div>
                         </form>
                     </c:otherwise>
