@@ -65,10 +65,6 @@
         <servlet-class>servlets.CerrarSesion</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/autenticacion
         <servlet-name>RecuerdaContrasenia</servlet-name>
         <servlet-class>servlets.RecuerdaContrasenia</servlet-class>
     </servlet>
@@ -95,13 +91,10 @@
     <servlet>
         <servlet-name>EditarUsuario</servlet-name>
         <servlet-class>servlets.EditarUsuario</servlet-class>
-<<<<<<< HEAD
-=======
+    </servlet>
+    <servlet>
         <servlet-name>ConfigurarCuenta</servlet-name>
         <servlet-class>servlets.ConfigurarCuenta</servlet-class>
->>>>>>> Configuracion cuenta
-=======
->>>>>>> origin/autenticacion
     </servlet>
     <servlet-mapping>
         <servlet-name>ListaPalacioJusticia</servlet-name>
@@ -168,10 +161,6 @@
         <url-pattern>/Hospital/CerrarSesion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/autenticacion
         <servlet-name>RecuerdaContrasenia</servlet-name>
         <url-pattern>/RecuerdaContrasenia</url-pattern>
     </servlet-mapping>
@@ -198,17 +187,14 @@
     <servlet-mapping>
         <servlet-name>EditarUsuario</servlet-name>
         <url-pattern>/Admin/EditarUsuario</url-pattern>
-<<<<<<< HEAD
-=======
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ConfigurarCuenta</servlet-name>
         <url-pattern>/Justicia/ConfigurarCuenta</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ConfigurarCuenta</servlet-name>
         <url-pattern>/Hospital/ConfigurarCuenta</url-pattern>
->>>>>>> Configuracion cuenta
-=======
->>>>>>> origin/autenticacion
     </servlet-mapping>
     <error-page>
         <error-code>403</error-code>
