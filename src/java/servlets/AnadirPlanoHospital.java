@@ -43,7 +43,6 @@ public class AnadirPlanoHospital extends HttpServlet {
                 FileItem plano = null;
                 List<FileItem> items = upload.parseRequest(request);
 
-
                 for (FileItem item : items) {
                     String campoN = item.getFieldName();
                     if (campoN.equals("plano") && item.getName() != null && item.getName().trim().length() > 0) {
@@ -104,14 +103,9 @@ public class AnadirPlanoHospital extends HttpServlet {
                     }
                     plano.write(f);
 
-                    Plano plan = new Plano();
-                    plan.setNombre(nom);
+                    Plano plan = new Plano(nom);
 
-                    Plano planoBD = null;
-                    if(ManagePlano.first()!=null){
-                        planoBD = ManagePlano.first();
-                    }
-                    
+                    Plano planoBD = ManagePlano.first();
                     int estado = ManagePlano.save(plan);
 
                     if (estado != -1) {
@@ -123,7 +117,7 @@ public class AnadirPlanoHospital extends HttpServlet {
                         response.sendRedirect("ListaHospital");
                     } else {
                         request.setAttribute("contador", 1);
-                        request.setAttribute("error_foto", "No es posible añadir el fichero seleccionado para el plano del hospital ");
+                        request.setAttribute("error_foto", "No es posible añadir el fichero seleccionado para el plano del hospital");
                         RequestDispatcher rd = request.getRequestDispatcher("hospital.jsp");
                         rd.forward(request, response);
                     }
