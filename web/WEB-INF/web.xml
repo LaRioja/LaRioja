@@ -96,6 +96,10 @@
         <servlet-name>ConfigurarCuenta</servlet-name>
         <servlet-class>servlets.ConfigurarCuenta</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AnadirContenidoExtra</servlet-name>
+        <servlet-class>servlets.AnadirContenidoExtra</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListaPalacioJusticia</servlet-name>
         <url-pattern>/Justicia/ListaPalacioJusticia</url-pattern>
@@ -204,6 +208,10 @@
         <error-code>404</error-code>
         <location>/error404.jsp</location>
     </error-page>
+    <servlet-mapping>
+        <servlet-name>AnadirContenidoExtra</servlet-name>
+        <url-pattern>/Hospital/AnadirContenidoExtra</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

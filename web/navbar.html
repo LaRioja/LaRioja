@@ -12,6 +12,35 @@ and open the template in the editor.
                 <img alt="Brand" src="../logos/gobrioja.png"  height="110" width="200" style="margin-top: -25%;">
             </a>
         </div>
+
+        
+        <c:if test="${apli=='Hospital'}">
+            <ul class="nav navbar-nav">
+                
+                <c:if test="${selec =='Inicio'}">
+                    <li class="active"><a href="${pageContext.request.contextPath}/Hospital/ListaHospital">Inicio</a></li>
+                </c:if>
+                <c:if test="${selec !='Inicio'}">
+                    <li><a href="${pageContext.request.contextPath}/Hospital/ListaHospital">Inicio</a></li>
+                </c:if>
+                
+                <c:if test="${selec =='Plano'}">
+                    <li class="active"><a href="${pageContext.request.contextPath}/Hospital/AnadirPlanoHospital">Plano Hospital</a></li>
+                </c:if>
+                <c:if test="${selec !='Plano'}">
+                    <li><a href="${pageContext.request.contextPath}/Hospital/AnadirPlanoHospital">Plano Hospital</a></li>
+                </c:if>
+                
+                <c:if test="${selec =='Extra'}">
+                    <li class="active"><a href="${pageContext.request.contextPath}/Hospital/AnadirContenidoExtra">Contenido extra</a></li>
+                </c:if>
+                <c:if test="${selec !='Extra'}">
+                    <li><a href="${pageContext.request.contextPath}/Hospital/AnadirContenidoExtra">Contenido extra</a></li>
+                </c:if>
+                
+            </ul>
+        </c:if>
+
         <ul class="nav navbar-nav navbar-right">
             <c:if test="${isAdmin}">
                 <li><a href="${pageContext.request.contextPath}/Admin/ListaUsuarios">Administrar</a></li>

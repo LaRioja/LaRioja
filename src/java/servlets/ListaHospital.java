@@ -38,7 +38,6 @@ public class ListaHospital extends HttpServlet {
             }
         }
         
-        request.setAttribute("plano", ManagePlano.first().getNombre());
         request.setAttribute("hospitales", hospitales);
         RequestDispatcher rd = request.getRequestDispatcher("hospital.jsp");
         rd.forward(request, response);

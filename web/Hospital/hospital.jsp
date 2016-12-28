@@ -22,6 +22,7 @@
 
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
         <c:set var="apli" value="Hospital"/>
+        <c:set var="selec" value="Inicio"/>
         <link href="${ctx}/CSS/custom.css" rel="stylesheet" media="all" type="text/css">
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
         <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" media="all" type="text/css">
@@ -120,28 +121,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <br/><br/>
-            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" <c:if test="${error_foto!=null}">aria-expanded="true"</c:if> <c:if test="${error_foto!=null}">aria-expanded="false"</c:if>aria-controls="collapseExample">
-                    Añadir plano hospital
-                </a>
-                    <div <c:if test="${error_foto!=null}"> class="collapse in" </c:if> <c:if test="${error_foto==null}"> class="collapse" </c:if> id="collapseExample" <c:if test="${error_foto!=null}"> aria-expended="true" </c:if>>
-                    <br><br>
-                <c:if test="${error_foto!=null}">
-                    <div class="alert alert-danger">
-                        ${error_foto}
-                    </div>  
-                </c:if>
-                <form enctype="multipart/form-data" class="form-horizontal" name="login" id="flogin" action="AnadirPlanoHospital" method="post">
-                    <div class="form-group">
-                        <label for="inputFondo">Plano hospital</label>
-                        <c:if test="${plano!=null}">
-                            <a target="_blank" href="${ctx}/plano/${plano}">Plano hospital</a>
-                        </c:if> 
-                        <input type="file" name="plano" id="plano">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Guardar plano hospital</button>
-                </form>
             </div>
         </div>
     </body>
