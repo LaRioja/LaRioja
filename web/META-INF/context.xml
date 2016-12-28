@@ -2,7 +2,7 @@
 <Context path="/LaRioja">
     <Realm className="org.apache.catalina.realm.JDBCRealm"
            connectionName="root" connectionPassword="password"
-           connectionURL="jdbc:mysql://192.168.21.4:3306/larioja"
+           connectionURL="jdbc:mysql://192.168.21.1:3306/larioja"
            debug="99"
            digest="sha1"
            driverName="com.mysql.jdbc.Driver"
