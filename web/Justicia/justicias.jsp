@@ -28,11 +28,17 @@
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
         <c:set var="apli" value="Justicia"/>
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
+        <link href="${ctx}/CSS/filtro.css" rel="stylesheet" media="all" type="text/css">
         <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" media="all" type="text/css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <link href="${ctx}/CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all" type="text/css">
 
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
-        <script src="${ctx}/JS/bootstrap.min.js"></script>
-        <script type="text/javascript" src="${ctx}/JS/jquery.dataTables.min.js"></script>
+        <script src="${ctx}/JS/moment-with-locales.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="${ctx}/JS/bootstrap.js"></script>
+        <script src="${ctx}/JS/bootstrap-datetimepicker.min.js"></script>
+        <script src="${ctx}/JS/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#tables').DataTable({
@@ -61,8 +67,15 @@
                         }
                     }
                 });
+                $("#fechaIni").datetimepicker({
+                    format: 'DD/MM/YYYY',
+                    locale: 'es'
+                });
+                $("#fechaFin").datetimepicker({
+                    format: 'DD/MM/YYYY',
+                    locale: 'es'
+                });
             });
-
         </script>
     </head>
     <body>
@@ -90,7 +103,29 @@
             <div class="row">
                 <a class="btn btn-primary col-sm-offset-10" href="AnadirRegistroPalacioJusticia" role="button">Nuevo registro</a>
             </div>
-            <br><br><br>
+            <br>
+            <div class="row">
+                <label class="col-sm-offset-1 col-sm-2">Filtrar resultados</label>
+            </div>
+            <div class="row">
+                <form class="form" action="ListaPalacioJusticia" method="post">
+                    <div class="form-group">
+                        <p class="col-sm-offset-1 col-sm-2">Fecha inicio</p>
+                        <div class="col-sm-3">
+                            <input type="text" id="fechaIni" name="fechaIni" value="<c:out value="${fechaIni}"/>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p class="col-sm-2">Fecha final</p>
+                        <div class="col-sm-3">
+                            <input type="text" id="fechaFin" name="fechaFin" value="<c:out value="${fechaFin}"/>">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info btn-sm">Filtrar</button>
+                </form>
+            </div>
+            <hr class="col-sm-offset-1 col-sm-10">
+            <br>
             <div class="row">
                 <div id="listaPalacioJusticia" class="table-responsive col-sm-offset-1 col-sm-10">
                     <table id="tables" class="table table-hover">
