@@ -84,6 +84,11 @@
                     </div>
                 </div>
             </c:if>
+            <c:if test="${error_foto!=null}">
+                <div class="alert alert-danger col-sm-offset-2 col-sm-8" role="alert">
+                    ${error_foto}
+                </div>  
+            </c:if>
             <div class="row">
                 <a class="btn btn-primary col-sm-offset-10" href="AnadirRegistroHospital" role="button">Nueva consulta médica</a>
             </div>

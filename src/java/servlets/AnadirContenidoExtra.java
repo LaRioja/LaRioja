@@ -11,6 +11,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -37,7 +39,7 @@ public class AnadirContenidoExtra extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        RequestDispatcher rd = request.getRequestDispatcher("contenidoExtra.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("anadirContenidoExtra.jsp");
         rd.forward(request, response);
     }
 
@@ -47,34 +49,33 @@ public class AnadirContenidoExtra extends HttpServlet {
         try {
             Part filePart = request.getPart("archivo");
             String fileName = getFileName(filePart);
-
-            String ruta = "/multi";
-            String path = request.getRealPath(ruta);
-            
             InputStream fileContent = filePart.getInputStream();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             byte[] buffer = new byte[0xFFFF];
 
-            for (int len; (len = fileContent.read(buffer)) != -1;){
+            for (int len; (len = fileContent.read(buffer)) != -1;) {
                 baos.write(buffer, 0, len);
             }
 
             baos.flush();
 
             fileContent.close();
-            
+            String ruta = "/contenidoExtra";
+            String path = request.getRealPath(ruta);
 
-            File fichero = new File("C:/Users/claencina/Desktop/proyecto laRioja/" + fileName);
+            File fichero = new File(path + "/" + fileName);
             FileOutputStream fos = new FileOutputStream(fichero);
             fos.write(baos.toByteArray());
             fos.flush();
             fos.close();
 
-            
-            
-            
+            response.sendRedirect("ContenidoExtra?msg=ok");
+
         } catch (Exception e) {
-            System.out.println(e);
+            request.setAttribute("contador", 1);
+            request.setAttribute("error_foto", "No es posible añadir el fichero seleccionado como contenido extra");
+            RequestDispatcher rd = request.getRequestDispatcher("anadirContenidoExtra.jsp");
+            rd.forward(request, response);
         }
     }
 

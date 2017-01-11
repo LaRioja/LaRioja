@@ -20,6 +20,7 @@
         <meta name="author" content="Hiberus Osaba">
 
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+        <c:set var="apli" value="Admin"/>
         <c:set var="param" value="${pageContext.request.getParameter('origen')}"/>
         <link href="${ctx}/CSS/custom.css" rel="stylesheet" media="all" type="text/css">
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">

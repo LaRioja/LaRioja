@@ -41,6 +41,14 @@
         <script src="${ctx}/JS/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
+                if(document.getElementById("fechaIni").value==""){
+                    document.getElementById("fechaFin").disabled = true;
+                    document.getElementById("fechaFin").value = "";
+                }else{
+                    document.getElementById("fechaFin").disabled = false;
+                }
+                document.getElementById("fechaIni").onblur = comprobar;
+                
                 $('#tables').DataTable({
                     "language": {
                         "sProcessing": "Procesando...",
@@ -76,6 +84,14 @@
                     locale: 'es'
                 });
             });
+            function comprobar(){
+                if(document.getElementById("fechaIni").value==""){
+                    document.getElementById("fechaFin").disabled = true;
+                    document.getElementById("fechaFin").value = "";
+                }else{
+                    document.getElementById("fechaFin").disabled = false;
+                }
+            }
         </script>
     </head>
     <body>
@@ -121,7 +137,7 @@
                             <input type="text" id="fechaFin" name="fechaFin" value="<c:out value="${fechaFin}"/>">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-info btn-sm">Filtrar</button>
+                    <button type="submit" class="btn  btn-primary btn-sm">Filtrar</button>
                 </form>
             </div>
             <hr class="col-sm-offset-1 col-sm-10">

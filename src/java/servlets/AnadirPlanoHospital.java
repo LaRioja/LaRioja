@@ -31,6 +31,7 @@ public class AnadirPlanoHospital extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        
         request.setAttribute("plano", ManagePlano.first().getNombre());
         RequestDispatcher rd = request.getRequestDispatcher("planoHospital.jsp");
         rd.forward(request, response);
@@ -50,6 +51,7 @@ public class AnadirPlanoHospital extends HttpServlet {
                 FileItemFactory factory = new DiskFileItemFactory();
                 ServletFileUpload upload = new ServletFileUpload(factory);
 
+                
                 FileItem plano = null;
                 List<FileItem> items = upload.parseRequest(request);
 
@@ -74,12 +76,12 @@ public class AnadirPlanoHospital extends HttpServlet {
                     }
                 }
                 if (error) {
-                    request.setAttribute("error", error);
-                    request.setAttribute("hospitales", ManageHospital.list());
+                    //request.setAttribute("error", error);
+                    //request.setAttribute("hospitales", ManageHospital.list());
 
                     request.setAttribute("plano", ManagePlano.first().getNombre());
 
-                    RequestDispatcher rd = request.getRequestDispatcher("hospital.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("planoHospital.jsp");
                     rd.forward(request, response);
                 } else if (plano != null) {
                     String ruta = "/plano";
@@ -111,6 +113,7 @@ public class AnadirPlanoHospital extends HttpServlet {
                         f = new File(path + "/" + no);
                         nom = no;
                     }
+                    
                     plano.write(f);
 
                     Plano plan = new Plano(nom);

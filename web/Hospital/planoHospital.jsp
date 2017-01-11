@@ -42,26 +42,6 @@
                 </div>
             </div>
             <br/><br/>
-            <c:if test="${error}">
-                <div class="row">
-                    <div class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">
-                        <ul>
-                            <c:if test="${errorconsulta !=null}">
-                                <li><c:out value="${errorconsulta}"/></li>
-                                </c:if>
-                                <c:if test="${errorhorai !=null}">
-                                <li><c:out value="${errorhorai}"/></li>
-                                </c:if>
-                                <c:if test="${errorhoraf !=null}">
-                                <li><c:out value="${errorhoraf}"/></li>
-                                </c:if>
-                                <c:if test="${erroradd !=null}">
-                                <li><c:out value="${erroradd}"/></li>
-                                </c:if>
-                        </ul>
-                    </div>  
-                </div>
-            </c:if>
             <div class="row">
                 <div class="col-sm-offset-1">
                     <c:if test="${error_foto!=null}">

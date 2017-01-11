@@ -100,6 +100,10 @@
         <servlet-name>AnadirContenidoExtra</servlet-name>
         <servlet-class>servlets.AnadirContenidoExtra</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ContenidoExtra</servlet-name>
+        <servlet-class>servlets.ContenidoExtra</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListaPalacioJusticia</servlet-name>
         <url-pattern>/Justicia/ListaPalacioJusticia</url-pattern>
@@ -165,6 +169,10 @@
         <url-pattern>/Hospital/CerrarSesion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/Admin/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RecuerdaContrasenia</servlet-name>
         <url-pattern>/RecuerdaContrasenia</url-pattern>
     </servlet-mapping>
@@ -200,6 +208,10 @@
         <servlet-name>ConfigurarCuenta</servlet-name>
         <url-pattern>/Hospital/ConfigurarCuenta</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfigurarCuenta</servlet-name>
+        <url-pattern>/Admin/ConfigurarCuenta</url-pattern>
+    </servlet-mapping>
     <error-page>
         <error-code>403</error-code>
         <location>/error.jsp</location>
@@ -211,6 +223,10 @@
     <servlet-mapping>
         <servlet-name>AnadirContenidoExtra</servlet-name>
         <url-pattern>/Hospital/AnadirContenidoExtra</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContenidoExtra</servlet-name>
+        <url-pattern>/Hospital/ContenidoExtra</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

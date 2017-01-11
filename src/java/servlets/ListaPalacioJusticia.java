@@ -58,19 +58,21 @@ public class ListaPalacioJusticia extends HttpServlet {
 
         String fechaInicio = request.getParameter("fechaIni");
         String fechaFin = request.getParameter("fechaFin");
+        
 
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaI = null;
         Date fechaF = null;
 
         try {
-            if (fechaInicio != null) {
+            if (fechaInicio != null || fechaInicio.compareTo("")!=0) {
                 fechaI = formato.parse(fechaInicio);
                 request.setAttribute("fechaIni", fechaInicio);
             }
-            if (fechaFin != null) {
-                fechaF = formato.parse(fechaFin);
-                System.out.println("32154854");
+            if (fechaFin!= null || fechaFin.compareTo("")!=0 ) {
+                if(fechaInicio.compareTo(fechaFin)!=0){
+                    fechaF = formato.parse(fechaFin);
+                }
                 request.setAttribute("fechaFin", fechaFin);
             }
         } catch (ParseException ex) {
@@ -82,12 +84,9 @@ public class ListaPalacioJusticia extends HttpServlet {
             justicias = ManageJusticia.listInterval(fechaI, fechaF);
         } else if (fechaI != null) {
             justicias = ManageJusticia.listOneDate(fechaI);
-            System.err.println("////");
         } else if (fechaF != null) {
-            System.err.println("-**");
             justicias = ManageJusticia.listOneDate(fechaF);
         } else {
-            System.err.println("222");
             justicias = ManageJusticia.listToday();
         }
 
