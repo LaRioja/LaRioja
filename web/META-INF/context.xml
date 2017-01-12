@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/LaRioja">
     <Realm className="org.apache.catalina.realm.JDBCRealm"
-           connectionName="root" connectionPassword="root"
-           connectionURL="jdbc:mysql://localhost:3306/larioja"
+           connectionName="root" connectionPassword="password"
+           connectionURL="jdbc:mysql://192.168.21.11:3306/larioja"
            debug="99"
            digest="sha1"
            driverName="com.mysql.jdbc.Driver"

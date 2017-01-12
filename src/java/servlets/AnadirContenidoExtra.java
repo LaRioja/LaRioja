@@ -50,7 +50,7 @@ public class AnadirContenidoExtra extends HttpServlet {
             Part filePart = request.getPart("archivo");
             String fileName = getFileName(filePart);
             InputStream fileContent = filePart.getInputStream();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+           /* ByteArrayOutputStream baos = new ByteArrayOutputStream();
             byte[] buffer = new byte[0xFFFF];
 
             for (int len; (len = fileContent.read(buffer)) != -1;) {
@@ -67,7 +67,11 @@ public class AnadirContenidoExtra extends HttpServlet {
             FileOutputStream fos = new FileOutputStream(fichero);
             fos.write(baos.toByteArray());
             fos.flush();
-            fos.close();
+            fos.close();*/
+           
+            String url= "http://"+request.getServerName()+":"+request.getServerPort()+request.getServletPath();
+            System.out.println(url);
+            //sardine.put("", fileContent);
 
             response.sendRedirect("ContenidoExtra?msg=ok");
 

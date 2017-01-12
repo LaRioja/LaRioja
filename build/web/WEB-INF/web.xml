@@ -108,6 +108,26 @@
         <servlet-name>EliminarContenidoExtra</servlet-name>
         <servlet-class>servlets.EliminarContenidoExtra</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>webdav</servlet-name>
+        <servlet-class>org.apache.catalina.servlets.WebdavServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>0</param-value>
+        </init-param>
+        <init-param>
+            <param-name>listings</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>readonly</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>webdav</servlet-name>
+        <url-pattern>/contenidos/*</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListaPalacioJusticia</servlet-name>
         <url-pattern>/Justicia/ListaPalacioJusticia</url-pattern>
@@ -253,6 +273,23 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>administrador</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>My WebDav</web-resource-name>
+            <url-pattern>/contenidos/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>PROPFIND</http-method>
+            <http-method>PROPPATCH</http-method>
+            <http-method>COPY</http-method>
+            <http-method>MOVE</http-method>
+            <http-method>LOCK</http-method>
+            <http-method>UNLOCK</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>administrador</role-name>
+            <role-name>hospital</role-name>
         </auth-constraint>
     </security-constraint>
     <security-constraint>
