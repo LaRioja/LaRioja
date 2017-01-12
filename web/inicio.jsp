@@ -42,13 +42,13 @@
             <ul>
                 <div class="row">
                     <div class="col-xs-offset-2 col-xs-4">
-                        <a class="navbar-brand" href="Justicia/ListaPalacioJusticia" >
+                        <a href="Justicia/ListaPalacioJusticia" >
                             <img class="img-responsive" alt="Brand" src="logos/justicia_2.png">
                             <p style="text-align: center">Palacio de Justicia</p>
                         </a>
                     </div>
                     <div class="col-xs-4">
-                        <a class="navbar-brand" href="Hospital/ListaHospital">
+                        <a href="Hospital/ListaHospital">
                             <img class="img-responsive" alt="Brand" src="logos/rioja_salud_2.png">
                             <p style="text-align: center">Hospital San Pedro</p>
                         </a>
