@@ -16,38 +16,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ContenidoExtra extends HttpServlet {
+public class EliminarContenidoExtra extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String param = request.getParameter("msg");
-        if (param != null) {
-            if (param.compareTo("ok") == 0) {
-                request.setAttribute("msg", "El contenido extra ha sido añadido correctamente");
-            }
-            if (param.compareTo("okDel") == 0) {
-                request.setAttribute("msg", "El fichero ha sido eliminado correctamente");
-            }
-        }
-
+        String id = request.getParameter("id");
+        
         String ruta = "/contenidoExtra";
         String path = request.getRealPath(ruta);
+        boolean borrado = false;
+        boolean encontrado = false;
 
         File f = new File(path);
         if (f.exists() && f.isDirectory()) {
             File[] ficheros = f.listFiles();
-            List<String> nombres = new ArrayList<String>();
             for (int i = 0; i < ficheros.length; i++) {
-                nombres.add(ficheros[i].getName());
-
+                if(ficheros[i].getName().compareTo(id)==0){
+                    borrado = ficheros[i].delete();
+                    encontrado = true;
+                }
             }
-            request.setAttribute("ficheros", ficheros);
         }
-
-        RequestDispatcher rd = request.getRequestDispatcher("contenidoExtra.jsp");
-        rd.forward(request, response);
+        
+        if(encontrado && borrado){
+            response.sendRedirect("ContenidoExtra?msg=okDel");
+        }else if(!borrado){
+            request.setAttribute("error_borrar", "No es posible eliminar el fichero");
+            RequestDispatcher rd = request.getRequestDispatcher("contenidoExtra.jsp");
+            rd.forward(request, response);
+        }
     }
+
 }

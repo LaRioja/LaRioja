@@ -74,9 +74,6 @@
                     <h4>Añadir contenido extra</h4>
                 </div>
             </div>
-            <div class="row">
-                <a class="btn btn-primary col-sm-offset-10" href="AnadirContenidoExtra" role="button">Añadir contenido extra</a>
-            </div>
             <br><br><br>
             <div class="row">
                 <div class="col-sm-offset-1">

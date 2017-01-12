@@ -82,6 +82,11 @@
                     </div>
                 </div>
             </c:if>
+            <c:if test="${error_borrar!=null}">
+                <div class="alert alert-danger col-sm-offset-2 col-sm-8" role="alert">
+                    ${error_borrar}
+                </div>  
+            </c:if>
             <div class="row">
                 <a class="btn btn-primary col-sm-offset-10" href="AnadirContenidoExtra" role="button">Añadir contenido extra</a>
             </div>
