@@ -33,6 +33,8 @@ public class ConfigurarCuenta extends HttpServlet {
             param = "Hospital";
         } else if (url.contains("Justicia")) {
             param = "Justicia";
+        } else if (url.contains("Admin")) {
+            param = "Admin";
         }
 
         if (username == null) {
@@ -110,6 +112,8 @@ public class ConfigurarCuenta extends HttpServlet {
                     response.sendRedirect("ListaHospital?msg=okConf");
                 } else if (url.contains("Justicia")) {
                     response.sendRedirect("ListaPalacioJusticia?msg=okConf");
+                } else if (url.contains("Admin")) {
+                    response.sendRedirect("ListaUsuarios?msg=okConf");
                 }
             } else {
                 request.setAttribute("errores", true);
@@ -118,6 +122,9 @@ public class ConfigurarCuenta extends HttpServlet {
                     rd.forward(request, response);
                 } else if (url.contains("Justicia")) {
                     RequestDispatcher rd = request.getRequestDispatcher("../configuracionCuenta.jsp?origen=" + "Justicia");
+                    rd.forward(request, response);
+                } else if (url.contains("Admin")) {
+                    RequestDispatcher rd = request.getRequestDispatcher("../configuracionCuenta.jsp?origen=" + "Admin");
                     rd.forward(request, response);
                 }
             }

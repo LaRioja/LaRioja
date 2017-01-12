@@ -107,6 +107,9 @@
                                     <c:if test="${param.origen == 'Hospital'}">
                                         <a href="ListaHospital" class="btn btn-primary" role="button">Cancelar</a>
                                     </c:if>
+                                    <c:if test="${param.origen == 'Admin'}">
+                                        <a href="ListaUsuarios" class="btn btn-primary" role="button">Cancelar</a>
+                                    </c:if>
                                 </div>
                             </div>
                         </form>
