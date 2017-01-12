@@ -7,6 +7,7 @@ package main.manages;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import main.model.Justicia;
 import main.persistence.HibernateUtil;
@@ -94,6 +95,34 @@ public class ManageJusticia {
         return justicia;
     }
 
+    public static List<Justicia> listToday() {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session sess = factory.openSession();
+        Transaction tx = null;
+        List<Justicia> justicia = new ArrayList();
+        try {
+            tx = sess.beginTransaction();
+            Calendar cal = Calendar.getInstance();
+            int anio = cal.get(Calendar.YEAR);
+            int mes = cal.get(Calendar.MONTH) + 1;
+            int dia = cal.get(Calendar.DAY_OF_MONTH);
+            justicia = sess.createQuery("from Justicia j where year(j.fecha) = :anio and month(j.fecha)= :mes and day(j.fecha) = :dia")
+                    .setParameter("anio", anio)
+                    .setParameter("mes", mes)
+                    .setParameter("dia", dia)
+                    .list();
+
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            sess.close();
+        }
+        return justicia;
+    }
+
     public static List<Justicia> listOrdenada() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session sess = factory.openSession();
@@ -133,12 +162,64 @@ public class ManageJusticia {
             int anio = cal.get(Calendar.YEAR);
             int mes = cal.get(Calendar.MONTH) + 1;
             int dia = cal.get(Calendar.DAY_OF_MONTH);
-            
+
             justicia = sess.createQuery("from Justicia j where year(j.fecha) = :anio and month(j.fecha)= :mes and day(j.fecha) = :dia and j.numerosala = :sala ORDER BY j.fecha")
                     .setParameter("anio", anio)
                     .setParameter("mes", mes)
                     .setParameter("dia", dia)
                     .setParameter("sala", sala)
+                    .list();
+
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            sess.close();
+        }
+        return justicia;
+    }
+
+    public static List<Justicia> listOneDate(Date fecha) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session sess = factory.openSession();
+        Transaction tx = null;
+        List<Justicia> justicia = new ArrayList();
+        try {
+            tx = sess.beginTransaction();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(fecha);
+            int anio = cal.get(Calendar.YEAR);
+            int mes = cal.get(Calendar.MONTH) + 1;
+            int dia = cal.get(Calendar.DAY_OF_MONTH);
+            justicia = sess.createQuery("from Justicia j where year(j.fecha) = :anio and month(j.fecha)= :mes and day(j.fecha) = :dia")
+                    .setParameter("anio", anio)
+                    .setParameter("mes", mes)
+                    .setParameter("dia", dia)
+                    .list();
+
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            sess.close();
+        }
+        return justicia;
+    }
+
+    public static List<Justicia> listInterval(Date fechaI, Date fechaF) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session sess = factory.openSession();
+        Transaction tx = null;
+        List<Justicia> justicia = new ArrayList();
+        try {
+            tx = sess.beginTransaction();
+            justicia = sess.createQuery("from Justicia j where j.fecha BETWEEN :startDate AND :endDate")
+                    .setParameter("startDate", fechaI)
+                    .setParameter("endDate", fechaF)
                     .list();
 
             tx.commit();

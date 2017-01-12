@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>servlets.BorradorPeticionesContrasenia</listener-class>
+    </listener>
     <servlet>
         <servlet-name>ListaPalacioJusticia</servlet-name>
         <servlet-class>servlets.ListaPalacioJusticia</servlet-class>
@@ -52,21 +56,73 @@
         <servlet-name>XMLHospital2</servlet-name>
         <servlet-class>servlets.XMLHospital2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Inicio</servlet-name>
+        <servlet-class>servlets.Inicio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CerrarSesion</servlet-name>
+        <servlet-class>servlets.CerrarSesion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RecuerdaContrasenia</servlet-name>
+        <servlet-class>servlets.RecuerdaContrasenia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PideNuevaContrasenia</servlet-name>
+        <servlet-class>servlets.PideNuevaContrasenia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CambioContrasenia</servlet-name>
+        <servlet-class>servlets.CambioContrasenia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListaUsuarios</servlet-name>
+        <servlet-class>servlets.ListaUsuarios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AnadirUsuario</servlet-name>
+        <servlet-class>servlets.AnadirUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarUsuario</servlet-name>
+        <servlet-class>servlets.EliminarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarUsuario</servlet-name>
+        <servlet-class>servlets.EditarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfigurarCuenta</servlet-name>
+        <servlet-class>servlets.ConfigurarCuenta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AnadirContenidoExtra</servlet-name>
+        <servlet-class>servlets.AnadirContenidoExtra</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ContenidoExtra</servlet-name>
+        <servlet-class>servlets.ContenidoExtra</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarContenidoExtra</servlet-name>
+        <servlet-class>servlets.EliminarContenidoExtra</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListaPalacioJusticia</servlet-name>
-        <url-pattern>/ListaPalacioJusticia</url-pattern>
+        <url-pattern>/Justicia/ListaPalacioJusticia</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EliminarRegistroPalacioJusticia</servlet-name>
-        <url-pattern>/EliminarRegistroPalacioJusticia</url-pattern>
+        <url-pattern>/Justicia/EliminarRegistroPalacioJusticia</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AnadirRegistroPalacioJusticia</servlet-name>
-        <url-pattern>/AnadirRegistroPalacioJusticia</url-pattern>
+        <url-pattern>/Justicia/AnadirRegistroPalacioJusticia</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EditarRegistroPalacioJusticia</servlet-name>
-        <url-pattern>/EditarRegistroPalacioJusticia</url-pattern>
+        <url-pattern>/Justicia/EditarRegistroPalacioJusticia</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>XMLJusticiaLista</servlet-name>
@@ -78,23 +134,23 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListaHospital</servlet-name>
-        <url-pattern>/ListaHospital</url-pattern>
+        <url-pattern>/Hospital/ListaHospital</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AnadirRegistroHospital</servlet-name>
-        <url-pattern>/AnadirRegistroHospital</url-pattern>
+        <url-pattern>/Hospital/AnadirRegistroHospital</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EliminarRegistroHospital</servlet-name>
-        <url-pattern>/EliminarRegistroHospital</url-pattern>
+        <url-pattern>/Hospital/EliminarRegistroHospital</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ModificarRegistroHospital</servlet-name>
-        <url-pattern>/ModificarRegistroHospital</url-pattern>
+        <url-pattern>/Hospital/ModificarRegistroHospital</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AnadirPlanoHospital</servlet-name>
-        <url-pattern>/AnadirPlanoHospital</url-pattern>
+        <url-pattern>/Hospital/AnadirPlanoHospital</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>XMLHospital</servlet-name>
@@ -104,12 +160,155 @@
         <servlet-name>XMLHospital2</servlet-name>
         <url-pattern>/XMLHospital2</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Inicio</servlet-name>
+        <url-pattern>/Inicio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/Justicia/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/Hospital/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/Admin/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecuerdaContrasenia</servlet-name>
+        <url-pattern>/RecuerdaContrasenia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PideNuevaContrasenia</servlet-name>
+        <url-pattern>/PideNuevaContrasenia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CambioContrasenia</servlet-name>
+        <url-pattern>/CambioContrasenia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListaUsuarios</servlet-name>
+        <url-pattern>/Admin/ListaUsuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AnadirUsuario</servlet-name>
+        <url-pattern>/Admin/AnadirUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarUsuario</servlet-name>
+        <url-pattern>/Admin/EliminarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarUsuario</servlet-name>
+        <url-pattern>/Admin/EditarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfigurarCuenta</servlet-name>
+        <url-pattern>/Justicia/ConfigurarCuenta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfigurarCuenta</servlet-name>
+        <url-pattern>/Hospital/ConfigurarCuenta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfigurarCuenta</servlet-name>
+        <url-pattern>/Admin/ConfigurarCuenta</url-pattern>
+    </servlet-mapping>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error404.jsp</location>
+    </error-page>
+    <servlet-mapping>
+        <servlet-name>AnadirContenidoExtra</servlet-name>
+        <url-pattern>/Hospital/AnadirContenidoExtra</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContenidoExtra</servlet-name>
+        <url-pattern>/Hospital/ContenidoExtra</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarContenidoExtra</servlet-name>
+        <url-pattern>/Hospital/EliminarContenidoExtra</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>Inicio</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Area de administracion</web-resource-name>
+            <url-pattern>/Admin/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>administrador</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Area del palacio de justicia</web-resource-name>
+            <url-pattern>/Justicia/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>justicia</role-name>
+            <role-name>administrador</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Area del hospital San Pedro</web-resource-name>
+            <url-pattern>/Hospital/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>hospital</role-name>
+            <role-name>administrador</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-role>
+        <role-name>hospital</role-name>
+    </security-role>
+    <security-role>
+        <role-name>justicia</role-name>
+    </security-role>
+    <security-role>
+        <role-name>administrador</role-name>
+    </security-role>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.jsp</form-login-page>
+            <form-error-page>/errorLogin.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    <servlet>
+        <servlet-name>SimpleCaptcha</servlet-name>
+        <servlet-class>nl.captcha.servlet.SimpleCaptchaServlet</servlet-class>
+        <init-param>
+            <param-name>captcha-width</param-name>
+            <param-value>300</param-value>
+        </init-param>
+        <init-param>
+            <param-name>captcha-height</param-name>
+            <param-value>100</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SimpleCaptcha</servlet-name>
+        <url-pattern>/simpleCaptcha.png</url-pattern>
+    </servlet-mapping>
 </web-app>

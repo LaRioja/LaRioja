@@ -1,16 +1,28 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%
+    HttpSession misession = (HttpSession) request.getSession();
+    String usuario = (String) misession.getAttribute("username");
+    request.setAttribute("isAdmin", request.isUserInRole("administrador"));
+    if (usuario == null) {
+        request.setAttribute("username", request.getUserPrincipal().getName().toUpperCase());
+    } else {
+        request.setAttribute("username", usuario.toUpperCase());
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Editar registro hospital</title>
+        <title>Editar registro palacio justicia</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Aplicación">
         <meta name="author" content="Hiberus Osaba">
 
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+        <c:set var="apli" value="Justicia"/>
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
         <link href="${ctx}/CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all" type="text/css">
@@ -22,22 +34,18 @@
         <script src="${ctx}/JS/bootstrap-datetimepicker.min.js"></script>
         <script>
             $(function () {
-                $("#horaIni").datetimepicker({
-                    format: 'HH:mm',
-                    locale: 'es'
-                });
-                $("#horaFin").datetimepicker({
-                    format: 'HH:mm',
+                $("#fecha").datetimepicker({
                     locale: 'es'
                 });
             });
         </script>
     </head>
     <body>
+        <%@include file="../navbar.html" %>
         <div class="container">
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-5">
-                    <h4>Modificar consulta médica</h4>
+                    <h4>Editar registro</h4>
                 </div>
             </div>
             <c:choose>
@@ -53,59 +61,49 @@
                         <div class="row">
                             <div class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">
                                 <ul>
-                                    <c:if test="${errorconsulta !=null}">
-                                        <li><c:out value="${errorconsulta}"/></li>
+                                    <c:if test="${errorsala !=null}">
+                                        <li><c:out value="${errorsala}"/></li>
                                         </c:if>
-                                        <c:if test="${errorhorai !=null}">
-                                        <li><c:out value="${errorhorai}"/></li>
+                                        <c:if test="${errorfecha !=null}">
+                                        <li><c:out value="${errorfecha}"/></li>
                                         </c:if>
-                                        <c:if test="${errorhoraf !=null}">
-                                        <li><c:out value="${errorhoraf}"/></li>
-                                        </c:if>
-                                        <c:if test="${erroradd !=null}">
-                                        <li><c:out value="${erroradd}"/></li>
+                                        <c:if test="${erroredit !=null}">
+                                        <li><c:out value="${erroredit}"/></li>
                                         </c:if>
                                 </ul>
                             </div>  
                         </div>
                     </c:if>
                     <div class="row">
-                        <form class="form-horizontal" name="hospital" id="fhospital" action="ModificarRegistroHospital" method="post">
+                        <form class="form-horizontal" name="ejusticia" id="ejusticia" action="EditarRegistroPalacioJusticia" method="post">
                             <div class="form-group">
-                                <label for="inputNombre" class="col-sm-3 control-label">Nombre *</label>
+                                <label for="inputSala" class="col-sm-3 control-label">Número de sala *</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" value="${hospital.nombremedico!=null ? hospital.nombremedico : nombre}" required="true" autofocus="true">
+                                    <input type="text" class="form-control" name="sala" id="sala" placeholder="Número de sala" value="${justicia.numerosala!=null ? justicia.numerosala : sala}" required="true" autofocus="true">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputApellidos" class="col-sm-3 control-label">Apellidos *</label>
+                                <label for="inputProcedimiento" class="col-sm-3 control-label">Procedimiento *</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos" value="${hospital.apellidomedico!=null ? hospital.apellidomedico : apellidos}" required="true">
+                                    <input type="text" class="form-control" name="procedimiento" id="procedimiento" placeholder="Procedimiento" value="${justicia.procedimiento!=null ? justicia.procedimiento : procedimiento}" required="true">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputConsulta" class="col-sm-3 control-label">Número consulta *</label>
+                                <label for="inputDescripcion" class="col-sm-3 control-label">Descripción *</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="consulta" id="consulta" placeholder="Número consulta" value="${hospital.numeroconsulta!=null ? hospital.numeroconsulta : consulta}" required="true">
+                                    <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" value="${justicia.descripcion!=null ? justicia.descripcion : descripcion}" required="true">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputHoraInicio" class="col-sm-3 control-label">Hora inicio *</label>
+                                <label for="inputFecha" class="col-sm-3 control-label">Fecha *</label>
                                 <div class="col-sm-6">
-                                    <input required="true" type="text" class="form-control" name="horaIni" id="horaIni" value="<fmt:formatDate pattern="HH:mm" value="${hospital.horainicio!=null ? hospital.horainicio : horaIni}" />">                
+                                    <input required="true" type="text" class="form-control" name="fecha" id="fecha" placeholder="Fecha (19/12/2016 10:15)" value="<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${justicia.fecha!=null ? justicia.fecha : fecha}" />">                   
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="inputHoraFin" class="col-sm-3 control-label">Hora fin *</label>
-                                <div class="col-sm-6">
-                                    <input required="true" type="text" class="form-control" name="horaFin" id="horaFin" value="<fmt:formatDate pattern="HH:mm" value="${hospital.horafin!=null ? hospital.horafin : horaFin}" />">                   
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-5">
-                                    <button type="submit" class="btn btn-primary">Modificar</button>
-                                    <a class="btn btn-primary" href="ListaHospital" role="button">Cancelar</a>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <a class="btn btn-primary" href="ListaPalacioJusticia" role="button">Cancelar</a>
                                 </div>
                             </div>
                         </form>

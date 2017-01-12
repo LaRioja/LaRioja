@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -27,7 +27,7 @@ public class Rol implements java.io.Serializable {
     @Column(name = "rolname", unique = true, nullable = false, length = 30)
     private String rolname;
 
-    @ManyToMany(mappedBy = "roles")
+    @OneToMany(mappedBy = "rol")
     private Set<Usuario> usuarios = new HashSet<Usuario>(0);
 
     public Rol() {

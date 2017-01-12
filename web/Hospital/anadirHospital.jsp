@@ -2,6 +2,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%
+    HttpSession misession = (HttpSession) request.getSession();
+    String usuario = (String) misession.getAttribute("username");
+    request.setAttribute("isAdmin", request.isUserInRole("administrador"));
+    if (usuario == null) {
+        request.setAttribute("username", request.getUserPrincipal().getName().toUpperCase());
+    } else {
+        request.setAttribute("username", usuario.toUpperCase());
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +22,7 @@
         <meta name="author" content="Hiberus Osaba">
 
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+        <c:set var="apli" value="Hospital"/>
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
         <link href="${ctx}/CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all" type="text/css">
@@ -35,12 +46,14 @@
         </script>
     </head>
     <body>
+        <%@include file="../navbar.html" %>
         <div class="container">
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-5">
                     <h4>Añadir nueva consulta médica</h4>
                 </div>
             </div>
+            <br/><br/>
             <c:if test="${error}">
                 <div class="row">
                     <div class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">
@@ -84,13 +97,13 @@
                     <div class="form-group">
                         <label for="inputHoraInicio" class="col-sm-3 control-label">Hora inicio *</label>
                         <div class="col-sm-6">
-                            <input required="true" type="text" class="form-control" name="horaIni" id="horaIni" value="<fmt:formatDate pattern="HH:mm" value="${horaIni}" />">                   
+                            <input required="true" type="text" class="form-control" placeholder="Hora inicio" name="horaIni" id="horaIni" value="<fmt:formatDate pattern="HH:mm" value="${horaIni}" />">                   
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputHoraFin" class="col-sm-3 control-label">Hora fin *</label>
                         <div class="col-sm-6">
-                            <input required="true" type="text" class="form-control" name="horaFin" id="horaFin" value="<fmt:formatDate pattern="HH:mm" value="${horaFin}" />">                   
+                            <input required="true" type="text" class="form-control" placeholder="Hora fin" name="horaFin" id="horaFin" value="<fmt:formatDate pattern="HH:mm" value="${horaFin}" />">                   
                         </div>
                     </div>
 

@@ -1,16 +1,14 @@
 package main.model;
 // Generated 15-dic-2016 13:44:58 by Hibernate Tools 4.3.1
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -35,11 +33,9 @@ public class Usuario implements java.io.Serializable {
     @Column(name = "email", nullable = false, length = 200)
     private String email;
 
-    @ManyToMany
-    @JoinTable(name = "UsuarioRol", joinColumns = {
-        @JoinColumn(name = "usuario_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "rol_id", referencedColumnName = "id")})
-    private Set<Rol> roles = new HashSet<Rol>(0);
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rol_id", nullable = false)
+    private Rol rol;
 
     public Usuario() {
     }
@@ -50,11 +46,11 @@ public class Usuario implements java.io.Serializable {
         this.email = email;
     }
 
-    public Usuario(String username, String password, String email, Set<Rol> roles) {
+    public Usuario(String username, String password, String email, Rol rol) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.roles = roles;
+        this.rol = rol;
     }
 
     public Integer getId() {
@@ -89,12 +85,12 @@ public class Usuario implements java.io.Serializable {
         this.email = email;
     }
 
-    public Set<Rol> getRoles() {
-        return roles;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setRoles(Set<Rol> roles) {
-        this.roles = roles;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
 }

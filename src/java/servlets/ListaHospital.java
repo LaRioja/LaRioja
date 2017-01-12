@@ -33,10 +33,11 @@ public class ListaHospital extends HttpServlet {
                 request.setAttribute("msg", "La consulta médica ha sido eliminada correctamente");
             }else if (param.compareTo("err") == 0){
                 request.setAttribute("error", "Error al intentar eliminar la consulta médica");
+            }else if (param.compareTo("okConf") == 0){
+                request.setAttribute("msg", "La configuración de la cuenta ha sido correctamente editada");
             }
         }
         
-        request.setAttribute("plano", ManagePlano.list().get(0).getNombre());
         request.setAttribute("hospitales", hospitales);
         RequestDispatcher rd = request.getRequestDispatcher("hospital.jsp");
         rd.forward(request, response);

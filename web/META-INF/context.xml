@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/LaRioja"/>
+<Context path="/LaRioja">
+    <Realm className="org.apache.catalina.realm.JDBCRealm"
+           connectionName="root" connectionPassword="root"
+           connectionURL="jdbc:mysql://localhost:3306/larioja"
+           debug="99"
+           digest="sha1"
+           driverName="com.mysql.jdbc.Driver"
+           name="larioja"
+           roleNameCol="rolname"
+           userCredCol="password"
+           userNameCol="username"
+           userRoleTable="view_role_user"
+           userTable="view_role_user"/>
+</Context>
