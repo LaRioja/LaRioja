@@ -20,8 +20,8 @@ public class PasarActivoInactivo extends HttpServlet {
             String id = request.getParameter("id");
             Sardine sardine = SardineFactory.begin("webdavuser", "password");
 
-            String urlOrigen = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/contenidoExtraActivo/" + id;
-            String urlDestino = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/contenidoExtraInactivo/" + id;
+            String urlOrigen = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/activos/" + id;
+            String urlDestino = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/inactivos/" + id;
 
             int number = 1;
             while (sardine.exists(urlDestino)) {
@@ -33,7 +33,7 @@ public class PasarActivoInactivo extends HttpServlet {
                 }
             }
 
-            urlDestino = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/contenidoExtraInactivo/" + id;
+            urlDestino = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/inactivos/" + id;
 
             sardine.move(urlOrigen, urlDestino);
             response.sendRedirect("ContenidoExtraInactivo?msg=okMov");
