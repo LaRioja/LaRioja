@@ -7,7 +7,6 @@ package servlets;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -30,6 +29,9 @@ public class ContenidoExtraInactivo extends HttpServlet {
             }
             if (param.compareTo("okDel") == 0) {
                 request.setAttribute("msg", "El fichero ha sido eliminado correctamente");
+            }
+            if (param.compareTo("okMov") == 0) {
+                request.setAttribute("msg", "El fichero ha sido movido correctamente");
             }
         }
 
