@@ -86,6 +86,11 @@
                     ${error_borrar}
                 </div>  
             </c:if>
+            <c:if test="${error_pasar!=null}">
+                <div class="alert alert-danger col-sm-offset-2 col-sm-8" role="alert">
+                    ${error_pasar}
+                </div>  
+            </c:if>
             <div class="row">
                 <a class="btn btn-primary col-sm-offset-10" href="AnadirContenidoExtra" role="button">Añadir contenido extra</a>
             </div>
@@ -107,7 +112,7 @@
                                 <tr>
                                     <td hidden="true">${fichero.getName()}</td>
                                     <td>
-                                        <a title="Añadir contenido extra a activos" href="<c:url value="PasarActivo"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a title="Añadir contenido extra a activos" href="<c:url value="PasarInactivoActivo"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-plus"></span></a>
                                         <a title="Eliminar de forma pemanente el contenido extra" href="<c:url value="EliminarContenidoExtra"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-remove"></span></a>                                        
                                         </td>
                                         <td><a target="_blank" href="${ctx}/contenidoExtra/${fichero.getName()}">${fichero.getName()}</a></td>
