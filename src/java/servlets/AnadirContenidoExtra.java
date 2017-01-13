@@ -47,12 +47,21 @@ public class AnadirContenidoExtra extends HttpServlet {
             String fileName = getFileName(filePart);
             InputStream fileContent = filePart.getInputStream();
             Sardine sardine = SardineFactory.begin("webdavuser", "password");
-            String url= "http://"+request.getServerName()+":"+request.getServerPort()+request.getServletContext().getContextPath()+"/contenidos/contenidoExtra/"+fileName;
-            sardine.put(url, fileContent);
-
+            String url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/";
+            String name = fileName;
+            int number = 1;
+            while (sardine.exists(url + name)) {
+                int posicion = name.lastIndexOf(".");
+                if (posicion > 0) {
+                    name = name.substring(0, posicion) + "_" + number + name.substring(posicion);
+                } else {
+                    name = name + "_" + number;
+                }
+            }
+            sardine.put(url+name, fileContent);
             response.sendRedirect("ContenidoExtra?msg=ok");
 
-        } catch (IOException | ServletException e) {
+        } catch (Exception e) {
             request.setAttribute("contador", 1);
             request.setAttribute("error_foto", "No es posible añadir el fichero seleccionado como contenido extra");
             RequestDispatcher rd = request.getRequestDispatcher("anadirContenidoExtra.jsp");
