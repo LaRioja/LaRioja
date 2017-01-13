@@ -33,7 +33,7 @@
         <script src="${ctx}/JS/moment-with-locales.min.js"></script>
         <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
         <script src="${ctx}/JS/bootstrap.js"></script>
-        
+
         <script type="text/javascript" src="${ctx}/JS/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
@@ -72,7 +72,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-5">
-                    <h4>Contenido extra</h4>
+                    <h4>Contenido extra activo</h4>
                 </div>
             </div>
             <c:if test="${msg !=null}">
@@ -90,6 +90,7 @@
             <div class="row">
                 <a class="btn btn-primary col-sm-offset-10" href="AnadirContenidoExtra" role="button">Añadir contenido extra</a>
             </div>
+
             <br><br><br>
             <div class="row">
                 <div class="table-responsive col-sm-offset-1 col-sm-10">
@@ -107,7 +108,7 @@
                                 <tr>
                                     <td hidden="true">${fichero.getName()}</td>
                                     <td>
-                                        <a href="<c:url value="EliminarContenidoExtra"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-remove"></span></a>
+                                        <a title="Añadir contenido extra a inactivos" href="<c:url value="EliminarContenidoExtra"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-minus"></span></a>
                                         </td>
                                         <td><a target="_blank" href="${ctx}/contenidoExtra/${fichero.getName()}">${fichero.getName()}</a></td>
                                     <td>
