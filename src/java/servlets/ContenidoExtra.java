@@ -5,9 +5,11 @@
  */
 package servlets;
 
-import java.io.File;
+import com.github.sardine.DavResource;
+import com.github.sardine.Sardine;
+import com.github.sardine.SardineFactory;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -27,26 +29,22 @@ public class ContenidoExtra extends HttpServlet {
         if (param != null) {
             if (param.compareTo("ok") == 0) {
                 request.setAttribute("msg", "El contenido extra ha sido añadido correctamente");
-            }
-            if (param.compareTo("okDel") == 0) {
+            } else if (param.compareTo("okDel") == 0) {
                 request.setAttribute("msg", "El fichero ha sido eliminado correctamente");
+            } else if (param.compareTo("okMov") == 0) {
+                request.setAttribute("msg", "El fichero ha sido movido correctamente");
             }
         }
 
-        String ruta = "/contenidoExtra";
-        String path = request.getRealPath(ruta);
+        try {
+            Sardine sardine = SardineFactory.begin("webdavuser", "password");
 
-        File f = new File(path);
-        if (f.exists() && f.isDirectory()) {
-            File[] ficheros = f.listFiles();
-            List<String> nombres = new ArrayList<String>();
-            for (int i = 0; i < ficheros.length; i++) {
-                nombres.add(ficheros[i].getName());
-
-            }
-            request.setAttribute("ficheros", ficheros);
+            String url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/activos/";
+            List<DavResource> resources = sardine.list(url);
+            request.setAttribute("ficheros", resources);
+        } catch (Exception e) {
+            request.setAttribute("ficheros", new ArrayList<DavResource>());
         }
-
         RequestDispatcher rd = request.getRequestDispatcher("contenidoExtra.jsp");
         rd.forward(request, response);
     }

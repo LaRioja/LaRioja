@@ -87,6 +87,11 @@
                     ${error_borrar}
                 </div>  
             </c:if>
+            <c:if test="${error_pasar!=null}">
+                <div class="alert alert-danger col-sm-offset-2 col-sm-8" role="alert">
+                    ${error_pasar}
+                </div>  
+            </c:if>
             <div class="row">
                 <a class="btn btn-primary col-sm-offset-10" href="AnadirContenidoExtra" role="button">Añadir contenido extra</a>
             </div>
@@ -101,30 +106,36 @@
                                 <th></th>
                                 <th>Nombre Fichero</th>
                                 <th>Tamaño</th>
+                                <th>Fecha de creación</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach items="${ficheros}" var="fichero" varStatus="i">
-                                <tr>
-                                    <td hidden="true">${fichero.getName()}</td>
-                                    <td>
-                                        <a title="Añadir contenido extra a inactivos" href="<c:url value="EliminarContenidoExtra"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-minus"></span></a>
+                                <c:if test="${!fichero.isDirectory()}">
+                                    <tr>
+                                        <td hidden="true">${fichero.getName()}</td>
+                                        <td>
+                                            <a title="Añadir contenido extra a inactivos" href="<c:url value="PasarActivoInactivo"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-minus"></span></a>
+                                            </td>
+                                            <td><a target="_blank" href="${ctx}/contenidos/contenidoExtra/activos/${fichero.getName()}">${fichero.getName()}</a></td>
+                                        <td>
+                                            <c:if test="${fichero.getContentLength()>1024}">
+                                                <c:if test="${fichero.getContentLength()/1024>1024}">
+                                                    <fmt:formatNumber value="${(fichero.getContentLength()/1024)/1024}" pattern="#,##0.00" /> MB
+                                                </c:if>
+                                                <c:if test="${fichero.getContentLength()/1024<1024}">
+                                                    <fmt:formatNumber value="${fichero.getContentLength()/1024}" pattern="#,##0.00" /> KB
+                                                </c:if>
+                                            </c:if>
+                                            <c:if test="${fichero.getContentLength()<1024}">
+                                                <fmt:formatNumber value="${fichero.getContentLength()}" pattern="#,##0.00" /> Bytes
+                                            </c:if>
                                         </td>
-                                        <td><a target="_blank" href="${ctx}/contenidos/contenidoExtra/${fichero.getName()}">${fichero.getName()}</a></td>
-                                    <td>
-                                        <c:if test="${fichero.length()>1024}">
-                                            <c:if test="${fichero.length()/1024>1024}">
-                                                <fmt:formatNumber value="${(fichero.length()/1024)/1024}" pattern="#,##0.00" /> MB
-                                            </c:if>
-                                            <c:if test="${fichero.length()/1024<1024}">
-                                                <fmt:formatNumber value="${fichero.length()/1024}" pattern="#,##0.00" /> KB
-                                            </c:if>
-                                        </c:if>
-                                        <c:if test="${fichero.length()<1024}">
-                                            <fmt:formatNumber value="${fichero.length()}" pattern="#,##0.00" /> Bytes
-                                        </c:if>
-                                    </td>
-                                </tr>
+                                        <td><fmt:formatDate type="both" 
+                                                        dateStyle="short" timeStyle="short" 
+                                                        value="${fichero.getCreation()}" /></td>
+                                    </tr>
+                                </c:if>
                             </c:forEach>
                         </tbody>
                     </table>
