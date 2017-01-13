@@ -22,7 +22,7 @@ public class EliminarContenidoExtra extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String id = request.getParameter("id");
-            Sardine sardine = SardineFactory.begin("webdavuser", "password");
+            Sardine sardine = SardineFactory.begin();
             String url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/" + id;
             if (sardine.exists(url)) {
                 sardine.delete(url);

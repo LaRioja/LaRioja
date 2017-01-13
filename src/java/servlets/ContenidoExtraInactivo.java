@@ -5,6 +5,9 @@
  */
 package servlets;
 
+import com.github.sardine.DavResource;
+import com.github.sardine.Sardine;
+import com.github.sardine.SardineFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,21 +37,15 @@ public class ContenidoExtraInactivo extends HttpServlet {
                 request.setAttribute("msg", "El fichero ha sido movido correctamente");
             }
         }
+        try {
+            Sardine sardine = SardineFactory.begin();
 
-        String ruta = "/contenidoExtraInactivo";
-        String path = request.getRealPath(ruta);
-
-        File f = new File(path);
-        if (f.exists() && f.isDirectory()) {
-            File[] ficheros = f.listFiles();
-            List<String> nombres = new ArrayList<String>();
-            for (int i = 0; i < ficheros.length; i++) {
-                nombres.add(ficheros[i].getName());
-
-            }
-            request.setAttribute("ficheros", ficheros);
+            String url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/inactivos/";
+            List<DavResource> resources = sardine.list(url);
+            request.setAttribute("ficheros", resources);
+        } catch (Exception e) {
+            request.setAttribute("ficheros", new ArrayList<DavResource>());
         }
-
         RequestDispatcher rd = request.getRequestDispatcher("contenidoExtraInactivo.jsp");
         rd.forward(request, response);
     }

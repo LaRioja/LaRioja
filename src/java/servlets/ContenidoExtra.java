@@ -9,7 +9,6 @@ import com.github.sardine.DavResource;
 import com.github.sardine.Sardine;
 import com.github.sardine.SardineFactory;
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -37,7 +36,7 @@ public class ContenidoExtra extends HttpServlet {
         }
 
         try {
-            Sardine sardine = SardineFactory.begin("webdavuser", "password");
+            Sardine sardine = SardineFactory.begin();
 
             String url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/activos/";
             List<DavResource> resources = sardine.list(url);

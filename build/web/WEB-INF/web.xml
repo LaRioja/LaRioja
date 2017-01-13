@@ -304,11 +304,11 @@
             <web-resource-name>My WebDav</web-resource-name>
             <url-pattern>/contenidos/*</url-pattern>
             <http-method>GET</http-method>
+            <http-method>POST</http-method>
         </web-resource-collection>
         <auth-constraint>
             <role-name>hospital</role-name>
             <role-name>administrador</role-name>
-            <role-name>dav</role-name>
         </auth-constraint>
     </security-constraint>
     <security-constraint>
@@ -335,9 +335,6 @@
             <role-name>administrador</role-name>
         </auth-constraint>
     </security-constraint>
-    <security-role>
-        <role-name>dav</role-name>
-    </security-role>
     <security-role>
         <role-name>hospital</role-name>
     </security-role>
