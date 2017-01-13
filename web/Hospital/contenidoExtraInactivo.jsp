@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -72,7 +71,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-5">
-                    <h4>Contenido extra activo</h4>
+                    <h4>Contenido extra inactivo</h4>
                 </div>
             </div>
             <c:if test="${msg !=null}">
@@ -108,9 +107,10 @@
                                 <tr>
                                     <td hidden="true">${fichero.getName()}</td>
                                     <td>
-                                        <a title="Añadir contenido extra a inactivos" href="<c:url value="EliminarContenidoExtra"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-minus"></span></a>
+                                        <a title="Añadir contenido extra a activos" href="<c:url value="PasarActivo"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a title="Eliminar de forma pemanente el contenido extra" href="<c:url value="EliminarContenidoExtra"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-remove"></span></a>                                        
                                         </td>
-                                        <td><a target="_blank" href="${ctx}/contenidos/contenidoExtra/${fichero.getName()}">${fichero.getName()}</a></td>
+                                        <td><a target="_blank" href="${ctx}/contenidoExtra/${fichero.getName()}">${fichero.getName()}</a></td>
                                     <td>
                                         <c:if test="${fichero.length()>1024}">
                                             <c:if test="${fichero.length()/1024>1024}">

@@ -33,9 +33,28 @@ and open the template in the editor.
                 
                 <c:if test="${selec =='Extra'}">
                     <li class="active"><a href="${pageContext.request.contextPath}/Hospital/ContenidoExtra">Contenido extra</a></li>
+                    
+                    
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contenido extra <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="${pageContext.request.contextPath}/Hospital/ContenidoExtra">Contenido extra activo</a></li>
+                            <li><a href="${pageContext.request.contextPath}/Hospital/ContenidoExtraInactivo">Contenido extra inactivo</a></li>
+                        </ul>
+                    </li>
+                    
+                    
                 </c:if>
                 <c:if test="${selec !='Extra'}">
                     <li><a href="${pageContext.request.contextPath}/Hospital/ContenidoExtra">Contenido extra</a></li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contenido extra <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="${pageContext.request.contextPath}/Hospital/ContenidoExtra">Contenido extra activo</a></li>
+                            <li><a href="${pageContext.request.contextPath}/Hospital/ContenidoExtraInactivo">Contenido extra inactivo</a></li>
+                        </ul>
+                    </li>
                 </c:if>
                 
             </ul>

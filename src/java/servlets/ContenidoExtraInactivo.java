@@ -16,37 +16,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class EliminarContenidoExtra extends HttpServlet {
+public class ContenidoExtraInactivo extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("id");
-        
-        String ruta = "/contenidoExtra";
+
+        String param = request.getParameter("msg");
+        if (param != null) {
+            if (param.compareTo("ok") == 0) {
+                request.setAttribute("msg", "El contenido extra ha sido añadido correctamente");
+            }
+            if (param.compareTo("okDel") == 0) {
+                request.setAttribute("msg", "El fichero ha sido eliminado correctamente");
+            }
+        }
+
+        String ruta = "/contenidoExtraInactivo";
         String path = request.getRealPath(ruta);
-        boolean borrado = false;
-        boolean encontrado = false;
 
         File f = new File(path);
         if (f.exists() && f.isDirectory()) {
             File[] ficheros = f.listFiles();
+            List<String> nombres = new ArrayList<String>();
             for (int i = 0; i < ficheros.length; i++) {
-                if(ficheros[i].getName().compareTo(id)==0){
-                    borrado = ficheros[i].delete();
-                    encontrado = true;
-                }
+                nombres.add(ficheros[i].getName());
+
             }
+            request.setAttribute("ficheros", ficheros);
         }
-        
-        if(encontrado && borrado){
-            response.sendRedirect("ContenidoExtra?msg=okDel");
-        }else if(!borrado){
-            request.setAttribute("error_borrar", "No es posible eliminar el fichero");
-            RequestDispatcher rd = request.getRequestDispatcher("contenidoExtra.jsp");
-            rd.forward(request, response);
-        }
+
+        RequestDispatcher rd = request.getRequestDispatcher("contenidoExtraInactivo.jsp");
+        rd.forward(request, response);
     }
 
 }
