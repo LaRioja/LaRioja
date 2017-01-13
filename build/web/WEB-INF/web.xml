@@ -124,6 +124,14 @@
             <param-value>false</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>ContenidoExtraInactivo</servlet-name>
+        <servlet-class>servlets.ContenidoExtraInactivo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContenidoExtraInactivo</servlet-name>
+        <url-pattern>/Hospital/ContenidoExtraInactivo</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>webdav</servlet-name>
         <url-pattern>/contenidos/*</url-pattern>
@@ -280,6 +288,16 @@
             <web-resource-name>My WebDav</web-resource-name>
             <url-pattern>/contenidos/*</url-pattern>
             <http-method>GET</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>hospital</role-name>
+            <role-name>administrador</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>My WebDav</web-resource-name>
+            <url-pattern>/contenidos/*</url-pattern>
             <http-method>PROPFIND</http-method>
             <http-method>PROPPATCH</http-method>
             <http-method>COPY</http-method>
@@ -288,8 +306,7 @@
             <http-method>UNLOCK</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>administrador</role-name>
-            <role-name>hospital</role-name>
+            <role-name>dav</role-name>
         </auth-constraint>
     </security-constraint>
     <security-constraint>

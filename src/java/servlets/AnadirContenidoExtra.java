@@ -5,14 +5,10 @@
  */
 package servlets;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import com.github.sardine.Sardine;
+import com.github.sardine.SardineFactory;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -50,32 +46,13 @@ public class AnadirContenidoExtra extends HttpServlet {
             Part filePart = request.getPart("archivo");
             String fileName = getFileName(filePart);
             InputStream fileContent = filePart.getInputStream();
-           /* ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[0xFFFF];
-
-            for (int len; (len = fileContent.read(buffer)) != -1;) {
-                baos.write(buffer, 0, len);
-            }
-
-            baos.flush();
-
-            fileContent.close();
-            String ruta = "/contenidoExtra";
-            String path = request.getRealPath(ruta);
-
-            File fichero = new File(path + "/" + fileName);
-            FileOutputStream fos = new FileOutputStream(fichero);
-            fos.write(baos.toByteArray());
-            fos.flush();
-            fos.close();*/
-           
-            String url= "http://"+request.getServerName()+":"+request.getServerPort()+request.getServletPath();
-            System.out.println(url);
-            //sardine.put("", fileContent);
+            Sardine sardine = SardineFactory.begin("webdavuser", "password");
+            String url= "http://"+request.getServerName()+":"+request.getServerPort()+request.getServletContext().getContextPath()+"/contenidos/contenidoExtra/"+fileName;
+            sardine.put(url, fileContent);
 
             response.sendRedirect("ContenidoExtra?msg=ok");
 
-        } catch (Exception e) {
+        } catch (IOException | ServletException e) {
             request.setAttribute("contador", 1);
             request.setAttribute("error_foto", "No es posible añadir el fichero seleccionado como contenido extra");
             RequestDispatcher rd = request.getRequestDispatcher("anadirContenidoExtra.jsp");

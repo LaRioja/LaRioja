@@ -109,7 +109,7 @@
                                     <td>
                                         <a href="<c:url value="EliminarContenidoExtra"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-remove"></span></a>
                                         </td>
-                                        <td><a target="_blank" href="${ctx}/contenidoExtra/${fichero.getName()}">${fichero.getName()}</a></td>
+                                        <td><a target="_blank" href="${ctx}/contenidos/contenidoExtra/${fichero.getName()}">${fichero.getName()}</a></td>
                                     <td>
                                         <c:if test="${fichero.length()>1024}">
                                             <c:if test="${fichero.length()/1024>1024}">
