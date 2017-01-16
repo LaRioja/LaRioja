@@ -53,10 +53,20 @@ public class AnadirContenidoExtra extends HttpServlet {
             while (sardine.exists(url + name)) {
                 int posicion = name.lastIndexOf(".");
                 if (posicion > 0) {
-                    name = name.substring(0, posicion) + "_" + number + name.substring(posicion);
+                    int p = name.lastIndexOf("_");
+                    String n = "";
+                    if(p!=-1){
+                        n = name.substring(p, posicion);
+                    }
+                    if(n.compareTo("_" + String.valueOf(number-1))==0){
+                        name = name.substring(0,p) + "_" + number + name.substring(posicion);
+                    }else{
+                        name = name.substring(0, posicion) + "_" + number + name.substring(posicion);
+                    }                    
                 } else {
                     name = name + "_" + number;
                 }
+                number++;
             }
             sardine.put(url+name, fileContent);
             response.sendRedirect("ContenidoExtra?msg=ok");
@@ -68,5 +78,4 @@ public class AnadirContenidoExtra extends HttpServlet {
             rd.forward(request, response);
         }
     }
-
 }

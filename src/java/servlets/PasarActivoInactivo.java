@@ -20,23 +20,36 @@ public class PasarActivoInactivo extends HttpServlet {
             String id = request.getParameter("id");
             Sardine sardine = SardineFactory.begin("webdavuser", "password");
 
+            System.out.println(id);
+
             String urlOrigen = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/activos/" + id;
             String urlDestino = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/inactivos/";
-            
+
             int number = 1;
             while (sardine.exists(urlDestino + id)) {
                 int posicion = id.lastIndexOf(".");
                 if (posicion > 0) {
-                    id = id.substring(0, posicion) + "_" + number + id.substring(posicion);
+                    int p = id.lastIndexOf("_");
+                    String n = "";
+                    if(p!=-1){
+                        n = id.substring(p, posicion);
+                    }
+                    if(n.compareTo("_" + String.valueOf(number-1))==0){
+                        id = id.substring(0,p) + "_" + number + id.substring(posicion);
+                    }else{
+                        id = id.substring(0, posicion) + "_" + number + id.substring(posicion);
+                    }                    
                 } else {
                     id = id + "_" + number;
                 }
+                number++;
             }
 
-            sardine.move(urlOrigen, urlDestino+id);
+            sardine.move(urlOrigen, urlDestino + id);
             response.sendRedirect("ContenidoExtraInactivo?msg=okMov");
 
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             request.setAttribute("error_pasar", "No es posible pasar el fichero de inactivo a activo");
             RequestDispatcher rd = request.getRequestDispatcher("contenidoExtra.jsp");
             rd.forward(request, response);

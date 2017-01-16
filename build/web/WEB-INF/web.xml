@@ -136,6 +136,14 @@
         <servlet-name>PasarActivoInactivo</servlet-name>
         <servlet-class>servlets.PasarActivoInactivo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PlanoHospital</servlet-name>
+        <servlet-class>servlets.PlanoHospital</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarPlano</servlet-name>
+        <servlet-class>servlets.EliminarPlano</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ContenidoExtraInactivo</servlet-name>
         <url-pattern>/Hospital/ContenidoExtraInactivo</url-pattern>
@@ -279,6 +287,14 @@
     <servlet-mapping>
         <servlet-name>PasarActivoInactivo</servlet-name>
         <url-pattern>/Hospital/PasarActivoInactivo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlanoHospital</servlet-name>
+        <url-pattern>/Hospital/PlanoHospital</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarPlano</servlet-name>
+        <url-pattern>/Hospital/EliminarPlano</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -29,12 +29,22 @@ public class PasarInactivoActivo extends HttpServlet {
 
             int number = 1;
             while (sardine.exists(urlDestino + id)) {
-                int posicion = id.lastIndexOf(".");
+                 int posicion = id.lastIndexOf(".");
                 if (posicion > 0) {
-                    id = id.substring(0, posicion) + "_" + number + id.substring(posicion);
+                    int p = id.lastIndexOf("_");
+                    String n = "";
+                    if(p!=-1){
+                        n = id.substring(p, posicion);
+                    }
+                    if(n.compareTo("_" + String.valueOf(number-1))==0){
+                        id = id.substring(0,p) + "_" + number + id.substring(posicion);
+                    }else{
+                        id = id.substring(0, posicion) + "_" + number + id.substring(posicion);
+                    }                    
                 } else {
                     id = id + "_" + number;
                 }
+                number++;
             }
 
             sardine.move(urlOrigen, urlDestino + id);
