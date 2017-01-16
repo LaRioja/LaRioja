@@ -25,10 +25,10 @@ public class PasarInactivoActivo extends HttpServlet {
             Sardine sardine = SardineFactory.begin("webdavuser", "password");
 
             String urlOrigen = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/inactivos/" + id;
-            String urlDestino = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/activos/" + id;
+            String urlDestino = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/activos/";
 
             int number = 1;
-            while (sardine.exists(urlDestino)) {
+            while (sardine.exists(urlDestino + id)) {
                 int posicion = id.lastIndexOf(".");
                 if (posicion > 0) {
                     id = id.substring(0, posicion) + "_" + number + id.substring(posicion);
@@ -37,9 +37,7 @@ public class PasarInactivoActivo extends HttpServlet {
                 }
             }
 
-            urlDestino = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/activos/" + id;
-
-            sardine.move(urlOrigen, urlDestino);
+            sardine.move(urlOrigen, urlDestino + id);
             response.sendRedirect("ContenidoExtra?msg=okMov");
 
         } catch (Exception e) {

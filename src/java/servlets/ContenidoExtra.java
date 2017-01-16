@@ -9,7 +9,6 @@ import com.github.sardine.DavResource;
 import com.github.sardine.Sardine;
 import com.github.sardine.SardineFactory;
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -29,15 +28,13 @@ public class ContenidoExtra extends HttpServlet {
         if (param != null) {
             if (param.compareTo("ok") == 0) {
                 request.setAttribute("msg", "El contenido extra ha sido añadido correctamente");
-            } else if (param.compareTo("okDel") == 0) {
-                request.setAttribute("msg", "El fichero ha sido eliminado correctamente");
             } else if (param.compareTo("okMov") == 0) {
                 request.setAttribute("msg", "El fichero ha sido movido correctamente");
             }
         }
 
         try {
-            Sardine sardine = SardineFactory.begin("webdavuser", "password");
+            Sardine sardine = SardineFactory.begin();
 
             String url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/activos/";
             List<DavResource> resources = sardine.list(url);

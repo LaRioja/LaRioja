@@ -46,7 +46,7 @@ public class AnadirContenidoExtra extends HttpServlet {
             Part filePart = request.getPart("archivo");
             String fileName = getFileName(filePart);
             InputStream fileContent = filePart.getInputStream();
-            Sardine sardine = SardineFactory.begin("webdavuser", "passwd");
+            Sardine sardine = SardineFactory.begin();
             String url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/activos/";
             String name = fileName;
             int number = 1;
