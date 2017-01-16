@@ -21,10 +21,10 @@ public class PasarActivoInactivo extends HttpServlet {
             Sardine sardine = SardineFactory.begin("webdavuser", "password");
 
             String urlOrigen = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/activos/" + id;
-            String urlDestino = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/inactivos/" + id;
-
+            String urlDestino = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/inactivos/";
+            
             int number = 1;
-            while (sardine.exists(urlDestino)) {
+            while (sardine.exists(urlDestino + id)) {
                 int posicion = id.lastIndexOf(".");
                 if (posicion > 0) {
                     id = id.substring(0, posicion) + "_" + number + id.substring(posicion);
@@ -33,15 +33,13 @@ public class PasarActivoInactivo extends HttpServlet {
                 }
             }
 
-            urlDestino = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/inactivos/" + id;
-
-            sardine.move(urlOrigen, urlDestino);
+            sardine.move(urlOrigen, urlDestino+id);
             response.sendRedirect("ContenidoExtraInactivo?msg=okMov");
 
         } catch (Exception e) {
             request.setAttribute("error_pasar", "No es posible pasar el fichero de inactivo a activo");
             RequestDispatcher rd = request.getRequestDispatcher("contenidoExtra.jsp");
             rd.forward(request, response);
-        }        
+        }
     }
 }

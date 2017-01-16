@@ -29,11 +29,9 @@ public class ContenidoExtraInactivo extends HttpServlet {
         if (param != null) {
             if (param.compareTo("ok") == 0) {
                 request.setAttribute("msg", "El contenido extra ha sido añadido correctamente");
-            }
-            if (param.compareTo("okDel") == 0) {
+            } else if (param.compareTo("okDel") == 0) {
                 request.setAttribute("msg", "El fichero ha sido eliminado correctamente");
-            }
-            if (param.compareTo("okMov") == 0) {
+            } else if (param.compareTo("okMov") == 0) {
                 request.setAttribute("msg", "El fichero ha sido movido correctamente");
             }
         }

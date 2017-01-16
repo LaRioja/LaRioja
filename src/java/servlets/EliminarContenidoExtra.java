@@ -23,10 +23,10 @@ public class EliminarContenidoExtra extends HttpServlet {
         try {
             String id = request.getParameter("id");
             Sardine sardine = SardineFactory.begin();
-            String url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/" + id;
+            String url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/inactivos/" + id;
             if (sardine.exists(url)) {
                 sardine.delete(url);
-                response.sendRedirect("ContenidoExtra?msg=okDel");
+                response.sendRedirect("ContenidoExtraInactivo?msg=okDel");
                 return;
             } else {
                 request.setAttribute("error_borrar", "No es posible eliminar el fichero");
