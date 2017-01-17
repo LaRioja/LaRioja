@@ -19,25 +19,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Aplicación">
         <meta name="author" content="Hiberus Osaba">
-        
+
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
         <c:set var="apli" value="Hospital"/>
-        <c:set var="selec" value="Extra"/>
+        <c:set var="selec" value="Plano"/>
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-        <link href="${ctx}/CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all" type="text/css">
-        
+
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
-        <script src="${ctx}/JS/moment-with-locales.min.js"></script>
         <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-        <script src="${ctx}/JS/bootstrap.js"></script>        
+        <script src="${ctx}/JS/bootstrap.js"></script>     
+        <script src="${ctx}/JS/bootstrap-filestyle.min.js"></script>
     </head>
     <body>
         <%@include file="../navbar.html" %>
         <div class="container">
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-5">
-                    <h4>Añadir contenido extra</h4>
+                    <h4>Añadir plano hospital</h4>
                 </div>
             </div>
             <br><br><br>
@@ -49,10 +48,12 @@
                         </div>  
                     </c:if>
                     <form enctype="multipart/form-data" class="form-horizontal" name="login" id="flogin" action="AnadirPlanoHospital" method="post">
-                        <div class="form-group">
-                            <input type="file" name="archivo" id="plano">
+                        <div class="form-group col-sm-6">
+                            <input type="file" name="archivo" id="plano" required="true" class="filestyle" data-buttonName="btn-primary" data-buttonText="Elegir fichero">
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <div class="form-group col-sm-8">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
                     </form>
                 </div>
             </div>

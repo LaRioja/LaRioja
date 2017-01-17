@@ -23,6 +23,7 @@
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
         <c:set var="apli" value="Hospital"/>
         <c:set var="selec" value="Extra"/>
+        <c:set var="activo" value="no"/>
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
         <link href="${ctx}/CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all" type="text/css">
@@ -117,7 +118,7 @@
                                             <a title="Añadir contenido extra a activos" href="<c:url value="PasarInactivoActivo"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-plus"></span></a>
                                             <a title="Eliminar de forma pemanente el contenido extra" href="<c:url value="EliminarContenidoExtra"><c:param name="id" value="${fichero.getName()}"/></c:url>"><span class="glyphicon glyphicon-remove"></span></a>                                        
                                             </td>
-                                            <td><a target="_blank" href="${ctx}/contenidoExtra/${fichero.getName()}">${fichero.getName()}</a></td>
+                                            <td><a target="_blank" href="${ctx}/contenidoExtra/inactivos/${fichero.getName()}">${fichero.getName()}</a></td>
                                         <td>
                                             <c:if test="${fichero.getContentLength()>1024}">
                                                 <c:if test="${fichero.getContentLength()/1024>1024}">

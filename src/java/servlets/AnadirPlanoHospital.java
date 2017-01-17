@@ -11,11 +11,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+@MultipartConfig
 public class AnadirPlanoHospital extends HttpServlet {
     
     private String getFileName(Part part) {
@@ -51,10 +53,20 @@ public class AnadirPlanoHospital extends HttpServlet {
             while (sardine.exists(url + name)) {
                 int posicion = name.lastIndexOf(".");
                 if (posicion > 0) {
-                    name = name.substring(0, posicion) + "_" + number + name.substring(posicion);
-                }else {
+                    int p = name.lastIndexOf("_");
+                    String n = "";
+                    if(p!=-1){
+                        n = name.substring(p, posicion);
+                    }
+                    if(n.compareTo("_" + String.valueOf(number-1))==0){
+                        name = name.substring(0,p) + "_" + number + name.substring(posicion);
+                    }else{
+                        name = name.substring(0, posicion) + "_" + number + name.substring(posicion);
+                    }                    
+                } else {
                     name = name + "_" + number;
                 }
+                number++;
             }
             sardine.put(url+name, fileContent);
             response.sendRedirect("PlanoHospital?msg=ok");

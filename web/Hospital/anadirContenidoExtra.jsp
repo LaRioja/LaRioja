@@ -23,48 +23,14 @@
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
         <c:set var="apli" value="Hospital"/>
         <c:set var="selec" value="Extra"/>
+        <c:set var="activo" value="si"/>
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-        <link href="${ctx}/CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all" type="text/css">
-        <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" media="all" type="text/css">
 
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
-        <script src="${ctx}/JS/moment-with-locales.min.js"></script>
         <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
         <script src="${ctx}/JS/bootstrap.js"></script>
-
-        <script type="text/javascript" src="${ctx}/JS/jquery.dataTables.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#tables').DataTable({
-                    "language": {
-                        "sProcessing": "Procesando...",
-                        "sLengthMenu": "Mostrar _MENU_ registros",
-                        "sZeroRecords": "No se encontraron resultados",
-                        "sEmptyTable": "Ningún dato disponible en esta tabla",
-                        "sInfo": "Mostrando del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 registros",
-                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix": "",
-                        "sSearch": "Buscar:",
-                        "sUrl": "",
-                        "sInfoThousands": ",",
-                        "sLoadingRecords": "Cargando...",
-                        "oPaginate": {
-                            "sFirst": "Primero",
-                            "sLast": "Último",
-                            "sNext": "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "oAria": {
-                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                        }
-                    }
-                });
-            });
-
-        </script>
+        <script src="${ctx}/JS/bootstrap-filestyle.min.js"></script>
     </head>
     <body>
         <%@include file="../navbar.html" %>
@@ -83,10 +49,12 @@
                         </div>  
                     </c:if>
                     <form enctype="multipart/form-data" class="form-horizontal" name="login" id="flogin" action="AnadirContenidoExtra" method="post">
-                        <div class="form-group">
-                            <input type="file" name="archivo" id="plano">
+                        <div class="form-group col-sm-6">
+                            <input type="file" name="archivo" required="true" class="filestyle" data-buttonName="btn-primary" data-buttonText="Elegir fichero">
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <div class="form-group col-sm-8">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
                     </form>
                 </div>
             </div>
