@@ -21,14 +21,13 @@
 
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
         <c:set var="apli" value="Admin"/>
-        <link href="${ctx}/CSS/customAdmin.css" rel="stylesheet" media="all" type="text/css">
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
         <script src="${ctx}/JS/bootstrap.min.js"></script>
     </head>
     <body>
         <%@include file="../navbar.html" %>
-        <div id="adduser_container" class="container">
+        <div class="container">
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-5">
                     <h4>Añadir nuevos usuarios</h4>
@@ -65,13 +64,13 @@
                     <div class="form-group">
                         <label for="inputUser" class="col-sm-4 control-label">Usuario *</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="usr" id="usr" placeholder="Nombre de usuario" required="true" autofocus="true" value="<c:out value="${usr}"/>">
+                            <input type="text" class="form-control" name="usr" id="usr" placeholder="Nombre de usuario" required="true" autofocus="true" maxlength="50" value="<c:out value="${usr}"/>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword" class="col-sm-4 control-label">Contraseña *</label>
                         <div class="col-sm-5">
-                            <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Contraseña" required="true" value="<c:out value="${pwd}"/>">
+                            <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Contraseña" required="true" maxlength="50" value="<c:out value="${pwd}"/>">
                         </div>
                         <div class="row">
                             <p class="text-info col-sm-offset-4 col-sm-5">La clave debe tener una longitud mayor de 8 y contener letras (al menos una mayúscula y una minúscula) y números</p>
@@ -80,7 +79,7 @@
                     <div class="form-group">
                         <label for="inputEmail" class="col-sm-4 control-label">Correo electrónico *</label>
                         <div class="col-sm-5">
-                            <input type="email" class="form-control" name="mail" id="mail" placeholder="Correo electrónico" required="true" value="<c:out value="${mail}"/>">
+                            <input type="email" class="form-control" name="mail" id="mail" placeholder="Correo electrónico" required="true" maxlength="200" value="<c:out value="${mail}"/>">
                         </div>
                     </div>
                     <div class="form-group">

@@ -22,10 +22,16 @@ public class AnadirContenidoExtra extends HttpServlet {
 
     private String getFileName(Part part) {
         for (String cd : part.getHeader("content-disposition").split(";")) {
-            System.out.println(cd);
             if (cd.trim().startsWith("filename")) {
-                return cd.substring(cd.indexOf('=') + 1).trim()
-                        .replace("\"", "");
+                String nombre = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+                if (!nombre.endsWith("\\") && nombre.lastIndexOf("\\") != -1) {
+                    nombre = nombre.substring(nombre.lastIndexOf("\\") + 1);
+                }
+                if (!nombre.endsWith("/") && nombre.lastIndexOf("/") != -1) {
+                    nombre = nombre.substring(nombre.lastIndexOf("/") + 1);
+                }
+                nombre = nombre.replace(" ", "_");
+                return nombre;
             }
         }
         return null;
@@ -43,35 +49,35 @@ public class AnadirContenidoExtra extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         try {
             Part filePart = request.getPart("archivo");
-            
+
             String fileName = getFileName(filePart);
             InputStream fileContent = filePart.getInputStream();
             Sardine sardine = SardineFactory.begin();
             String url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/contenidos/contenidoExtra/activos/";
             String name = fileName;
-            System.out.println(fileName);
             int number = 1;
             while (sardine.exists(url + name)) {
                 int posicion = name.lastIndexOf(".");
                 if (posicion > 0) {
                     int p = name.lastIndexOf("_");
                     String n = "";
-                    if(p!=-1){
+                    if (p != -1) {
                         n = name.substring(p, posicion);
                     }
-                    if(n.compareTo("_" + String.valueOf(number-1))==0){
-                        name = name.substring(0,p) + "_" + number + name.substring(posicion);
-                    }else{
+                    if (n.compareTo("_" + String.valueOf(number - 1)) == 0) {
+                        name = name.substring(0, p) + "_" + number + name.substring(posicion);
+                    } else {
                         name = name.substring(0, posicion) + "_" + number + name.substring(posicion);
-                    }                    
+                    }
                 } else {
                     name = name + "_" + number;
                 }
                 number++;
             }
-            sardine.put(url+name, fileContent);
+            sardine.put(url + name, fileContent);
             response.sendRedirect("ContenidoExtra?msg=ok");
 
         } catch (Exception e) {
@@ -79,7 +85,6 @@ public class AnadirContenidoExtra extends HttpServlet {
             request.setAttribute("error_foto", "No es posible añadir el fichero seleccionado como contenido extra");
             RequestDispatcher rd = request.getRequestDispatcher("anadirContenidoExtra.jsp");
             rd.forward(request, response);
-            throw e;
         }
     }
 }

@@ -24,12 +24,12 @@
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
         <c:set var="apli" value="Hospital"/>
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <link rel="stylesheet" href="${ctx}/CSS/jquery-ui.css" type="text/css">
         <link href="${ctx}/CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all" type="text/css">
 
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
         <script src="${ctx}/JS/moment-with-locales.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="${ctx}/JS/jquery-ui.js"></script>
         <script src="${ctx}/JS/bootstrap.js"></script>
         <script src="${ctx}/JS/bootstrap-datetimepicker.min.js"></script>
         <script>
@@ -79,19 +79,19 @@
                     <div class="form-group">
                         <label for="inputNombre" class="col-sm-3 control-label">Nombre *</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" value="<c:out value="${nombre}"/>" required="true" autofocus="true">
+                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" value="<c:out value="${nombre}"/>" required="true" autofocus="true" maxlength="50">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputApellidos" class="col-sm-3 control-label">Apellidos *</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos" value="<c:out value="${apellidos}"/>" required="true">
+                            <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos" value="<c:out value="${apellidos}"/>" required="true" maxlength="80">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputConsulta" class="col-sm-3 control-label">Número consulta *</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="consulta" id="consulta" placeholder="Número consulta" value="<c:out value="${consulta}"/>" required="true">
+                            <input type="text" class="form-control" name="consulta" id="consulta" placeholder="Número consulta" value="<c:out value="${consulta}"/>" required="true" maxlength="6">
                         </div>
                     </div>
                     <div class="form-group">

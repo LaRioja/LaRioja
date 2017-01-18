@@ -29,24 +29,19 @@
         <c:set var="apli" value="Justicia"/>
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
         <link href="${ctx}/CSS/filtro.css" rel="stylesheet" media="all" type="text/css">
-        <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" media="all" type="text/css">
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <link href="${ctx}/CSS/jquery.dataTables.min.css" rel="stylesheet" media="all" type="text/css">
+        <link rel="stylesheet" href="${ctx}/CSS/jquery-ui.css" type="text/css">
         <link href="${ctx}/CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all" type="text/css">
 
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
         <script src="${ctx}/JS/moment-with-locales.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="${ctx}/JS/jquery-ui.js"></script>
         <script src="${ctx}/JS/bootstrap.js"></script>
         <script src="${ctx}/JS/bootstrap-datetimepicker.min.js"></script>
         <script src="${ctx}/JS/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                if(document.getElementById("fechaIni").value==""){
-                    document.getElementById("fechaFin").disabled = true;
-                    document.getElementById("fechaFin").value = "";
-                }else{
-                    document.getElementById("fechaFin").disabled = false;
-                }
+                comprobar();
                 document.getElementById("fechaIni").onblur = comprobar;
                 
                 $('#tables').DataTable({
@@ -158,7 +153,6 @@
                             <c:forEach var="justicia" items="${justicias}">
                                 <tr>
                                     <td>
-
                                         <a href="<c:url value="EditarRegistroPalacioJusticia"><c:param name="id" value="${justicia.id}"/></c:url>" >
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </a>
@@ -168,7 +162,7 @@
                                         </td>
                                         <td>${justicia.numerosala}</td>
                                     <td>${justicia.procedimiento}</td>
-                                    <td>${justicia.descripcion}</td>
+                                    <td class="col-sm-4" style="word-break: break-all;">${justicia.descripcion}</td>
                                     <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${justicia.fecha}" /></td>
                                 </tr>
                             </c:forEach>

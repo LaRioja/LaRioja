@@ -23,9 +23,8 @@
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
         <c:set var="apli" value="Hospital"/>
         <c:set var="selec" value="Inicio"/>
-        <link href="${ctx}/CSS/custom.css" rel="stylesheet" media="all" type="text/css">
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
-        <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" media="all" type="text/css">
+        <link href="${ctx}/CSS/jquery.dataTables.min.css" rel="stylesheet" media="all" type="text/css">
 
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
         <script src="${ctx}/JS/bootstrap.js"></script>
@@ -116,8 +115,8 @@
                                         <a href="<c:url value="ModificarRegistroHospital"><c:param name="id" value="${hospital.id}"/></c:url>"><span class="glyphicon glyphicon-pencil"></span></a>
                                         <a href="<c:url value="EliminarRegistroHospital"><c:param name="id" value="${hospital.id}"/></c:url>"><span class="glyphicon glyphicon-remove"></span></a>
                                         </td>
-                                        <td>${hospital.nombremedico} </td>
-                                    <td>${hospital.apellidomedico} </td>
+                                        <td class="col-sm-2" style="word-break: break-all;">${hospital.nombremedico} </td>
+                                    <td class="col-sm-3" style="word-break: break-all;">${hospital.apellidomedico} </td>
                                     <td>${hospital.numeroconsulta} </td>
                                     <td><fmt:formatDate pattern="HH:mm" value="${hospital.horainicio}" /></td>
                                     <td> <fmt:formatDate pattern="HH:mm" value="${hospital.horafin}" /></td>

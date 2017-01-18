@@ -21,9 +21,8 @@
 
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
         <c:set var="apli" value="Admin"/>
-        <link href="${ctx}/CSS/customAdmin.css" rel="stylesheet" media="all" type="text/css">
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
-        <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" media="all" type="text/css">
+        <link href="${ctx}/CSS/jquery.dataTables.min.css" rel="stylesheet" media="all" type="text/css">
 
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
         <script src="${ctx}/JS/bootstrap.min.js"></script>
@@ -85,6 +84,7 @@
             <div class="row">
                 <a class="btn btn-primary col-sm-offset-10" href="AnadirUsuario" role="button">Nuevo usuario</a>
             </div>
+            <br><br><br>
             <div class="row">
                 <div id="listaUsuarios" class="table-responsive col-sm-offset-1 col-sm-10">
                     <table id="tables" class="table table-hover">
@@ -108,8 +108,8 @@
                                                 <span class="glyphicon glyphicon-remove"></span>
                                             </a>
                                         </td>
-                                        <td>${usuario.username}</td>
-                                    <td>${usuario.email}</td>
+                                        <td class="col-sm-3" style="word-break: break-all;">${usuario.username}</td>
+                                    <td class="col-sm-4" style="word-break: break-all;">${usuario.email}</td>
                                     <td>${usuario.rol.rolname}</td>
                                 </tr>
                             </c:forEach>

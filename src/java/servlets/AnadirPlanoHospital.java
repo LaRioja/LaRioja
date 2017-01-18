@@ -19,17 +19,24 @@ import javax.servlet.http.Part;
 
 @MultipartConfig
 public class AnadirPlanoHospital extends HttpServlet {
-    
+
     private String getFileName(Part part) {
         for (String cd : part.getHeader("content-disposition").split(";")) {
             if (cd.trim().startsWith("filename")) {
-                return cd.substring(cd.indexOf('=') + 1).trim()
-                        .replace("\"", "");
+                String nombre = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+                if (!nombre.endsWith("\\") && nombre.lastIndexOf("\\") != -1) {
+                    nombre = nombre.substring(nombre.lastIndexOf("\\") + 1);
+                }
+                if (!nombre.endsWith("/") && nombre.lastIndexOf("/") != -1) {
+                    nombre = nombre.substring(nombre.lastIndexOf("/") + 1);
+                }
+                nombre = nombre.replace(" ", "_");
+                return nombre;
             }
         }
         return null;
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,8 +49,16 @@ public class AnadirPlanoHospital extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         try {
             Part filePart = request.getPart("archivo");
+            if (!filePart.getContentType().contains("image")) {
+                request.setAttribute("contador", 1);
+                request.setAttribute("error_formato", "El formato no corresponde con una imagen");
+                RequestDispatcher rd = request.getRequestDispatcher("anadirPlanoHospital.jsp");
+                rd.forward(request, response);
+                return;
+            }
             String fileName = getFileName(filePart);
             InputStream fileContent = filePart.getInputStream();
             Sardine sardine = SardineFactory.begin();
@@ -55,22 +70,22 @@ public class AnadirPlanoHospital extends HttpServlet {
                 if (posicion > 0) {
                     int p = name.lastIndexOf("_");
                     String n = "";
-                    if(p!=-1){
+                    if (p != -1) {
                         n = name.substring(p, posicion);
                     }
-                    if(n.compareTo("_" + String.valueOf(number-1))==0){
-                        name = name.substring(0,p) + "_" + number + name.substring(posicion);
-                    }else{
+                    if (n.compareTo("_" + String.valueOf(number - 1)) == 0) {
+                        name = name.substring(0, p) + "_" + number + name.substring(posicion);
+                    } else {
                         name = name.substring(0, posicion) + "_" + number + name.substring(posicion);
-                    }                    
+                    }
                 } else {
                     name = name + "_" + number;
                 }
                 number++;
             }
-            sardine.put(url+name, fileContent);
+            sardine.put(url + name, fileContent);
             response.sendRedirect("PlanoHospital?msg=ok");
-        }catch (Exception e) {
+        } catch (Exception e) {
             request.setAttribute("contador", 1);
             request.setAttribute("error_foto", "No es posible añadir el fichero seleccionado como plano");
             RequestDispatcher rd = request.getRequestDispatcher("anadirPlanoHospital.jsp");

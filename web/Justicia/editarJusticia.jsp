@@ -24,12 +24,12 @@
         <c:set var="ctx" value="${pageContext.request.contextPath}"/>
         <c:set var="apli" value="Justicia"/>
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <link rel="stylesheet" href="${ctx}/CSS/jquery-ui.css" type="text/css">
         <link href="${ctx}/CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all" type="text/css">
 
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
         <script src="${ctx}/JS/moment-with-locales.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="${ctx}/JS/jquery-ui.js"></script>
         <script src="${ctx}/JS/bootstrap.js"></script>
         <script src="${ctx}/JS/bootstrap-datetimepicker.min.js"></script>
         <script>
@@ -79,19 +79,19 @@
                             <div class="form-group">
                                 <label for="inputSala" class="col-sm-3 control-label">Número de sala *</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="sala" id="sala" placeholder="Número de sala" value="${justicia.numerosala!=null ? justicia.numerosala : sala}" required="true" autofocus="true">
+                                    <input type="text" class="form-control" name="sala" id="sala" placeholder="Número de sala" value="${justicia.numerosala!=null ? justicia.numerosala : sala}" required="true" autofocus="true" maxlength="6">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputProcedimiento" class="col-sm-3 control-label">Procedimiento *</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="procedimiento" id="procedimiento" placeholder="Procedimiento" value="${justicia.procedimiento!=null ? justicia.procedimiento : procedimiento}" required="true">
+                                    <input type="text" class="form-control" name="procedimiento" id="procedimiento" placeholder="Procedimiento" value="${justicia.procedimiento!=null ? justicia.procedimiento : procedimiento}" required="true" maxlength="20">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputDescripcion" class="col-sm-3 control-label">Descripción *</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" value="${justicia.descripcion!=null ? justicia.descripcion : descripcion}" required="true">
+                                    <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" value="${justicia.descripcion!=null ? justicia.descripcion : descripcion}" required="true" maxlength="500">
                                 </div>
                             </div>
                             <div class="form-group">

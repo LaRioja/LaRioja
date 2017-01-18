@@ -24,10 +24,10 @@
         <c:set var="apli" value="Hospital"/>
         <c:set var="selec" value="Plano"/>
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <link rel="stylesheet" href="${ctx}/CSS/jquery-ui.css" type="text/css">
 
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="${ctx}/JS/jquery-ui.js"></script>
         <script src="${ctx}/JS/bootstrap.js"></script>     
         <script src="${ctx}/JS/bootstrap-filestyle.min.js"></script>
     </head>
@@ -47,12 +47,18 @@
                             ${error_foto}
                         </div>  
                     </c:if>
+                    <c:if test="${error_formato!=null}">
+                        <div class="alert alert-danger">
+                            ${error_formato}
+                        </div>  
+                    </c:if>
                     <form enctype="multipart/form-data" class="form-horizontal" name="login" id="flogin" action="AnadirPlanoHospital" method="post">
                         <div class="form-group col-sm-6">
                             <input type="file" name="archivo" id="plano" required="true" class="filestyle" data-buttonName="btn-primary" data-buttonText="Elegir fichero">
                         </div>
                         <div class="form-group col-sm-8">
                             <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a class="btn btn-primary" href="PlanoHospital" role="button">Cancelar</a>
                         </div>
                     </form>
                 </div>

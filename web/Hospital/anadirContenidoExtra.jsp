@@ -25,10 +25,10 @@
         <c:set var="selec" value="Extra"/>
         <c:set var="activo" value="si"/>
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <link rel="stylesheet" href="${ctx}/CSS/jquery-ui.css" type="text/css">
 
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="${ctx}/JS/jquery-ui.js"></script>
         <script src="${ctx}/JS/bootstrap.js"></script>
         <script src="${ctx}/JS/bootstrap-filestyle.min.js"></script>
     </head>
@@ -54,6 +54,7 @@
                         </div>
                         <div class="form-group col-sm-8">
                             <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a class="btn btn-primary" href="ContenidoExtra" role="button">Cancelar</a>
                         </div>
                     </form>
                 </div>

@@ -217,7 +217,7 @@ public class ManageJusticia {
         List<Justicia> justicia = new ArrayList();
         try {
             tx = sess.beginTransaction();
-            justicia = sess.createQuery("from Justicia j where j.fecha BETWEEN :startDate AND :endDate")
+            justicia = sess.createQuery("from Justicia j where cast(j.fecha as date) BETWEEN :startDate AND :endDate")
                     .setParameter("startDate", fechaI)
                     .setParameter("endDate", fechaF)
                     .list();

@@ -26,15 +26,10 @@
         <c:set var="selec" value="Extra"/>
         <c:set var="activo" value="si"/>
         <link href="${ctx}/CSS/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-        <link href="${ctx}/CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all" type="text/css">
-        <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" media="all" type="text/css">
+        <link href="${ctx}/CSS/jquery.dataTables.min.css" rel="stylesheet" media="all" type="text/css">
 
         <script src="${ctx}/JS/jquery-1.12.4.min.js"></script>
-        <script src="${ctx}/JS/moment-with-locales.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
         <script src="${ctx}/JS/bootstrap.js"></script>
-
         <script type="text/javascript" src="${ctx}/JS/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
